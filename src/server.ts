@@ -1,7 +1,8 @@
 import express from "express";
 import payload from "payload";
+import dotenv from "dotenv";
 
-require("dotenv").config();
+dotenv.config();
 const app = express();
 const port = 3000;
 
@@ -17,7 +18,7 @@ const start = async () => {
     express: app,
     onInit: async () => {
       payload.logger.info(
-        `Payload listening at http://localhost:${port + payload.getAdminURL()}`
+        `Payload listening at http://localhost:${port + payload.getAdminURL()}`,
       );
     },
   });
