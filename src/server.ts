@@ -1,6 +1,7 @@
 import express from "express";
 import payload from "payload";
 import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 const app = express();
@@ -12,14 +13,14 @@ app.get("/", (_, res) => {
 });
 
 const start = async () => {
+  // serve static files
+  app.use("/assets", express.static(path.resolve(__dirname, "./assets")));
   // Initialize Payload
   await payload.init({
     secret: process.env.PAYLOAD_SECRET,
     express: app,
     onInit: async () => {
-      payload.logger.info(
-        `Payload listening at http://localhost:${port + payload.getAdminURL()}`,
-      );
+      payload.logger.info(`Payload listening at http://localhost:${port + payload.getAdminURL()}`);
     },
   });
 

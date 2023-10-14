@@ -1,1 +1,4 @@
-{}
+{
+  "singleAttributePerLine": false,
+  "printWidth": 100
+}

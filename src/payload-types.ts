@@ -9,6 +9,11 @@
 export interface Config {
   collections: {
     users: User;
+    faqs: Faq;
+    jobs: Job;
+    members: Member;
+    news: News;
+    reviews: Review;
     "payload-preferences": PayloadPreference;
     "payload-migrations": PayloadMigration;
   };
@@ -16,6 +21,8 @@ export interface Config {
 }
 export interface User {
   id: string;
+  firstname?: string;
+  lastname?: string;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -26,6 +33,58 @@ export interface User {
   loginAttempts?: number;
   lockUntil?: string;
   password: string;
+}
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  active: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Job {
+  id: string;
+  role: string;
+  description?: string;
+  active: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Member {
+  id: string;
+  firstname?: string;
+  lastname?: string;
+  username?: string;
+  role?: string;
+  quote?: string;
+  joined?: string;
+  rank?: number;
+  status?: "active" | "retired";
+  visible?: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface News {
+  id: string;
+  title: string;
+  description?: string;
+  content?: {
+    [k: string]: unknown;
+  }[];
+  date?: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Review {
+  id: string;
+  username: string;
+  title?: string;
+  comment?: string;
+  active?: boolean;
+  date?: string;
+  rating?: number;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface PayloadPreference {
   id: string;
@@ -58,6 +117,11 @@ declare module "payload" {
   export interface GeneratedTypes {
     collections: {
       users: User;
+      faqs: Faq;
+      jobs: Job;
+      members: Member;
+      news: News;
+      reviews: Review;
       "payload-preferences": PayloadPreference;
       "payload-migrations": PayloadMigration;
     };

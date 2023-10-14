@@ -13,8 +13,8 @@
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
     "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
     "generate:graphQLSchema": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:graphQLSchema",
-    "lint": "npx eslint --ignore-path .gitignore src",
-    "lint:fix": "npx eslint --fix --ignore-path .gitignore src",
+    "lint": "npx eslint src",
+    "lint:fix": "npx eslint --fix src",
     "format": "npx prettier --ignore-path .gitignore --write '**/*.{js,ts,jsx,tsx,json,mjs,cjs}'"
   },
   "dependencies": {
