@@ -4,15 +4,18 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { viteBundler } from "@payloadcms/bundler-vite";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload/config";
-
-import Users from "./collections/Users";
-import Faqs from "./collections/Faqs";
-import Jobs from "./collections/Jobs";
-import Members from "./collections/Members";
-import News from "./collections/News";
-import Reviews from "./collections/Reviews";
 import Logo from "./components/Logo";
 import Icon from "./components/Icon";
+import {
+  Users,
+  Faqs,
+  Avatars,
+  Documents,
+  Jobs,
+  Members,
+  News,
+  Reviews,
+} from "./collections";
 
 export default buildConfig({
   admin: {
@@ -26,9 +29,10 @@ export default buildConfig({
     components: {
       graphics: { Logo: Logo, Icon: Icon },
     },
+    dateFormat: "dd/LL/yyyy",
   },
   editor: lexicalEditor({}),
-  collections: [Users, Members, Faqs, Jobs, News, Reviews],
+  collections: [Users, Members, Faqs, Jobs, News, Reviews, Avatars, Documents],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },

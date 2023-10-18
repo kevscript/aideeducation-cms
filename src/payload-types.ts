@@ -9,20 +9,23 @@
 export interface Config {
   collections: {
     users: User;
+    members: Member;
     faqs: Faq;
     jobs: Job;
-    members: Member;
     news: News;
     reviews: Review;
-    "payload-preferences": PayloadPreference;
-    "payload-migrations": PayloadMigration;
+    avatars: Avatar;
+    documents: Document;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   globals: {};
 }
 export interface User {
   id: string;
-  firstname?: string;
-  lastname?: string;
+  first_name?: string;
+  last_name?: string;
+  roles?: 'admin';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -33,6 +36,44 @@ export interface User {
   loginAttempts?: number;
   lockUntil?: string;
   password: string;
+}
+export interface Member {
+  id: string;
+  first_name: string;
+  last_name: string;
+  user_name: string;
+  avatar?: string | Avatar;
+  roles: 'developer'[];
+  status: 'active' | 'retired';
+  joined: string;
+  rank: number;
+  quote?: string;
+  visible?: boolean;
+  full_name?: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Avatar {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string;
+  filename?: string;
+  mimeType?: string;
+  filesize?: number;
+  width?: number;
+  height?: number;
+  sizes?: {
+    thumbnail?: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+  };
 }
 export interface Faq {
   id: string;
@@ -45,51 +86,52 @@ export interface Faq {
 export interface Job {
   id: string;
   role: string;
+  status: 'active' | 'inactive';
   description?: string;
-  active: boolean;
-  updatedAt: string;
-  createdAt: string;
-}
-export interface Member {
-  id: string;
-  firstname?: string;
-  lastname?: string;
-  username?: string;
-  role?: string;
-  quote?: string;
-  joined?: string;
-  rank?: number;
-  status?: "active" | "retired";
-  visible?: boolean;
+  visible: boolean;
   updatedAt: string;
   createdAt: string;
 }
 export interface News {
   id: string;
   title: string;
+  date: string;
   description?: string;
+  document?: string | Document;
   content?: {
     [k: string]: unknown;
   }[];
-  date?: string;
   updatedAt: string;
   createdAt: string;
+}
+export interface Document {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string;
+  filename?: string;
+  mimeType?: string;
+  filesize?: number;
+  width?: number;
+  height?: number;
 }
 export interface Review {
   id: string;
   username: string;
-  title?: string;
-  comment?: string;
-  active?: boolean;
   date?: string;
+  avatar?: string | Avatar;
+  title?: string;
   rating?: number;
+  comment?: string;
+  visible?: boolean;
   updatedAt: string;
   createdAt: string;
 }
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: string | User;
   };
   key?: string;
@@ -113,17 +155,21 @@ export interface PayloadMigration {
   createdAt: string;
 }
 
-declare module "payload" {
+
+declare module 'payload' {
   export interface GeneratedTypes {
     collections: {
-      users: User;
-      faqs: Faq;
-      jobs: Job;
-      members: Member;
-      news: News;
-      reviews: Review;
-      "payload-preferences": PayloadPreference;
-      "payload-migrations": PayloadMigration;
-    };
+      'users': User
+      'members': Member
+      'faqs': Faq
+      'jobs': Job
+      'news': News
+      'reviews': Review
+      'avatars': Avatar
+      'documents': Document
+      'payload-preferences': PayloadPreference
+      'payload-migrations': PayloadMigration
+    }
+
   }
 }

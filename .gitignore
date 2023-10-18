@@ -1,6 +1,10 @@
+node_modules
 build
 dist
-/media
-node_modules
 .DS_Store
 .env
+.env.local
+
+# avoid uploading the local media storage
+/media
+src/media

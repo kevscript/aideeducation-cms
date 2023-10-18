@@ -1,12 +1,22 @@
 import { CollectionConfig } from "payload/types";
 
-const Faqs: CollectionConfig = {
+export const Faqs: CollectionConfig = {
   slug: "faqs",
   admin: { description: "Foire aux questions, réponses aux questions récurrentes." },
+  labels: {
+    singular: "Question (FAQ)",
+    plural: "Questions (FAQ)",
+  },
   fields: [
-    { type: "text", name: "question", required: true },
-    { type: "textarea", name: "answer", required: true },
-    { type: "checkbox", name: "active", required: true, defaultValue: true },
+    { type: "text", name: "question", required: true, label: "Question" },
+    { type: "textarea", name: "answer", required: true, label: "Réponse" },
+    {
+      type: "checkbox",
+      name: "active",
+      required: true,
+      defaultValue: true,
+      label: "Publier sur le site",
+    },
   ],
 };
 
