@@ -5,7 +5,6 @@ import path from "path";
 
 dotenv.config();
 const app = express();
-const port = 3000;
 
 // Redirect root to Admin panel
 app.get("/", (_, res) => {
@@ -21,14 +20,16 @@ const start = async () => {
     express: app,
     onInit: async () => {
       payload.logger.info(
-        `Payload listening at http://localhost:${port + payload.getAdminURL()}`,
+        `Payload listening at ${
+          process.env.PAYLOAD_PUBLIC_SERVER_URL + payload.getAdminURL()
+        }`,
       );
     },
   });
 
   // Add your own express routes here
 
-  app.listen(port);
+  app.listen(process.env.PAYLOAD_PORT);
 };
 
 start();
