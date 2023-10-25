@@ -16,16 +16,16 @@ export interface Config {
     reviews: Review;
     avatars: Avatar;
     documents: Document;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   globals: {};
 }
 export interface User {
   id: string;
-  first_name?: string;
-  last_name?: string;
-  roles?: 'admin';
+  first_name: string;
+  last_name: string;
+  role: "admin" | "editor";
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -43,8 +43,8 @@ export interface Member {
   last_name: string;
   user_name: string;
   avatar?: string | Avatar;
-  roles: 'developer'[];
-  status: 'active' | 'retired';
+  roles: "developer"[];
+  status: "active" | "retired";
   joined: string;
   rank: number;
   quote?: string;
@@ -86,7 +86,7 @@ export interface Faq {
 export interface Job {
   id: string;
   role: string;
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
   description?: string;
   visible: boolean;
   updatedAt: string;
@@ -131,7 +131,7 @@ export interface Review {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string;
@@ -155,21 +155,19 @@ export interface PayloadMigration {
   createdAt: string;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes {
     collections: {
-      'users': User
-      'members': Member
-      'faqs': Faq
-      'jobs': Job
-      'news': News
-      'reviews': Review
-      'avatars': Avatar
-      'documents': Document
-      'payload-preferences': PayloadPreference
-      'payload-migrations': PayloadMigration
-    }
-
+      users: User;
+      members: Member;
+      faqs: Faq;
+      jobs: Job;
+      news: News;
+      reviews: Review;
+      avatars: Avatar;
+      documents: Document;
+      "payload-preferences": PayloadPreference;
+      "payload-migrations": PayloadMigration;
+    };
   }
 }
