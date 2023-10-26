@@ -1,7 +1,7 @@
 import express from "express";
 import payload from "payload";
 import dotenv from "dotenv";
-import { testCredentials } from "./credentials";
+import { credentials } from "./credentials";
 
 dotenv.config();
 
@@ -20,10 +20,10 @@ const globalSetup = async () => {
     );
   });
 
-  const response = await fetch(
+  const registerAdminUser = await fetch(
     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/users/first-register`,
     {
-      body: JSON.stringify(testCredentials),
+      body: JSON.stringify(credentials.admin),
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,10 +31,19 @@ const globalSetup = async () => {
     },
   );
 
-  const data = await response.json();
+  const registerAdminUserData = await registerAdminUser.json();
 
-  if (!data.user || !data.user.token) {
+  if (!registerAdminUserData.user || !registerAdminUserData.user.token) {
     throw new Error("Failed to register first user");
+  }
+
+  const createdEditorUser = await payload.create({
+    collection: "users",
+    data: credentials.editor,
+  });
+
+  if (!createdEditorUser) {
+    throw new Error("Failed to create an Editor User");
   }
 };
 

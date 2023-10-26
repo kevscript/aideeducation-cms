@@ -1,5 +1,5 @@
 import { User } from "../payload-types";
-import { testCredentials } from "./credentials";
+import { credentials } from "./credentials";
 
 describe("Users", () => {
   it("should allow a user to log in", async () => {
@@ -11,9 +11,13 @@ describe("Users", () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(testCredentials),
+      body: JSON.stringify({
+        email: credentials.admin.email,
+        password: credentials.admin.password,
+      }),
     }).then((res) => res.json());
 
     expect(result.token).toBeDefined();
+    expect(result.user.email).toBe(credentials.admin.email);
   });
 });
