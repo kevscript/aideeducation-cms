@@ -2,7 +2,10 @@ import { CollectionConfig } from "payload/types";
 
 export const News: CollectionConfig = {
   slug: "news",
-  admin: { description: "Articles et communiqués de l'association." },
+  admin: {
+    group: "Contenu",
+    description: "Articles et communiqués de l'association.",
+  },
   labels: {
     singular: "Communiqué",
     plural: "Communiqués",

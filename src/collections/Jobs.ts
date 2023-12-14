@@ -1,8 +1,13 @@
 import { CollectionConfig } from "payload/types";
+import { isAdminField } from "../access/isAdmin";
 
 export const Jobs: CollectionConfig = {
   slug: "jobs",
-  admin: { description: "Postes à pourvoir au sein de l'association." },
+  admin: {
+    group: "Contenu",
+    description: "Postes à pourvoir au sein de l'association.",
+    useAsTitle: "role",
+  },
   labels: {
     singular: "Recrutement",
     plural: "Recrutements",
@@ -17,6 +22,7 @@ export const Jobs: CollectionConfig = {
           required: true,
           label: "Poste",
           admin: { width: "80%" },
+          unique: true,
         },
         {
           name: "status",
@@ -33,14 +39,32 @@ export const Jobs: CollectionConfig = {
         },
       ],
     },
-    { name: "description", type: "textarea", label: "Description du rôle" },
     {
-      name: "visible",
+      name: "description",
+      type: "textarea",
+      label: "Description du rôle",
+      required: true,
+    },
+    {
+      name: "icon",
+      type: "upload",
+      relationTo: "icons",
+      label: "Icône représentative",
+      required: false,
+    },
+    {
       type: "checkbox",
+      name: "published",
       required: true,
       defaultValue: true,
-      label: "Publier sur le site",
+      label: "Publier",
+      access: {
+        read: isAdminField,
+        create: isAdminField,
+        update: isAdminField,
+      },
     },
+
     // job image
   ],
 };

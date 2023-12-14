@@ -11,6 +11,7 @@ export const Documents: CollectionConfig = {
     singular: "Document",
     plural: "Documents",
   },
+  admin: { group: "Medias" },
   fields: [
     {
       name: "alt",

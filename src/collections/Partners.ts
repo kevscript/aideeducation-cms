@@ -2,17 +2,17 @@ import { CollectionConfig } from "payload/types";
 import { isAdminOrPublished } from "../access/isAdminOrPublished";
 import { isAdminField } from "../access/isAdmin";
 
-export const Faqs: CollectionConfig = {
-  slug: "faqs",
+export const Partners: CollectionConfig = {
+  slug: "partners",
   admin: {
     group: "Contenu",
-    description: "Foire aux questions, réponses aux questions récurrentes.",
-    useAsTitle: "question",
-    defaultColumns: ["question", "published", "updatedAt", "createdAt"],
+    description: "Les partenaires de l'association",
+    useAsTitle: "name",
+    defaultColumns: ["name", "published", "updatedAt", "createdAt"],
   },
   labels: {
-    singular: "Question (FAQ)",
-    plural: "Questions (FAQ)",
+    singular: "Partenaire",
+    plural: "Partenaires",
   },
   access: {
     read: isAdminOrPublished,
@@ -20,18 +20,19 @@ export const Faqs: CollectionConfig = {
   fields: [
     {
       type: "text",
-      name: "question",
+      name: "name",
       required: true,
-      label: "Question",
-      maxLength: 200,
+      label: "Nom",
+      maxLength: 50,
       unique: true,
     },
+    { type: "textarea", name: "description", required: false, label: "Description" },
     {
-      type: "textarea",
-      name: "answer",
-      required: true,
-      label: "Réponse",
-      maxLength: 1000,
+      type: "upload",
+      name: "logo",
+      relationTo: "logos",
+      required: false,
+      label: "Logo",
     },
     {
       type: "checkbox",
@@ -48,4 +49,4 @@ export const Faqs: CollectionConfig = {
   ],
 };
 
-export default Faqs;
+export default Partners;

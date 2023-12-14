@@ -1,9 +1,11 @@
 import { CollectionConfig } from "payload/types";
+import { isAdminField } from "../access/isAdmin";
 // import MemberThumbnail from "../components/members/MemberThumbnail";
 
 export const Members: CollectionConfig = {
   slug: "members",
   admin: {
+    group: "Contenu",
     description: "Liste des membres de l'association.",
     useAsTitle: "fullname",
     disableDuplicate: true,
@@ -97,10 +99,16 @@ export const Members: CollectionConfig = {
     },
     { name: "quote", type: "textarea", label: "Citation" },
     {
-      name: "visible",
       type: "checkbox",
+      name: "published",
+      required: true,
       defaultValue: true,
-      label: "Membre visible sur le site",
+      label: "Publier",
+      access: {
+        read: isAdminField,
+        create: isAdminField,
+        update: isAdminField,
+      },
     },
     {
       name: "full_name",

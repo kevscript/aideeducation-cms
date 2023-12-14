@@ -2,17 +2,17 @@ import { CollectionConfig } from "payload/types";
 import { isAdminOrPublished } from "../access/isAdminOrPublished";
 import { isAdminField } from "../access/isAdmin";
 
-export const Faqs: CollectionConfig = {
-  slug: "faqs",
+export const Socials: CollectionConfig = {
+  slug: "socials",
   admin: {
     group: "Contenu",
-    description: "Foire aux questions, réponses aux questions récurrentes.",
-    useAsTitle: "question",
-    defaultColumns: ["question", "published", "updatedAt", "createdAt"],
+    description: "Les réseaux sociaux de l'association",
+    useAsTitle: "name",
+    defaultColumns: ["name", "link", "published", "updatedAt", "createdAt"],
   },
   labels: {
-    singular: "Question (FAQ)",
-    plural: "Questions (FAQ)",
+    singular: "Réseau Social",
+    plural: "Réseaux Sociaux",
   },
   access: {
     read: isAdminOrPublished,
@@ -20,18 +20,25 @@ export const Faqs: CollectionConfig = {
   fields: [
     {
       type: "text",
-      name: "question",
+      name: "name",
       required: true,
-      label: "Question",
-      maxLength: 200,
+      label: "Réseau Social",
+      maxLength: 30,
       unique: true,
     },
     {
-      type: "textarea",
-      name: "answer",
+      type: "text",
+      name: "link",
       required: true,
-      label: "Réponse",
+      label: "Lien",
       maxLength: 1000,
+    },
+    {
+      type: "upload",
+      name: "icon",
+      relationTo: "icons",
+      required: false,
+      label: "Icône du réseau social",
     },
     {
       type: "checkbox",
@@ -48,4 +55,4 @@ export const Faqs: CollectionConfig = {
   ],
 };
 
-export default Faqs;
+export default Socials;

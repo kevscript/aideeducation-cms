@@ -2,17 +2,17 @@ import { CollectionConfig } from "payload/types";
 import { isAdminOrPublished } from "../access/isAdminOrPublished";
 import { isAdminField } from "../access/isAdmin";
 
-export const Faqs: CollectionConfig = {
-  slug: "faqs",
+export const Statistics: CollectionConfig = {
+  slug: "statistics",
   admin: {
     group: "Contenu",
-    description: "Foire aux questions, réponses aux questions récurrentes.",
-    useAsTitle: "question",
-    defaultColumns: ["question", "published", "updatedAt", "createdAt"],
+    description: "L'association à travers les chiffres.",
+    useAsTitle: "value",
+    defaultColumns: ["value", "published", "updatedAt", "createdAt"],
   },
   labels: {
-    singular: "Question (FAQ)",
-    plural: "Questions (FAQ)",
+    singular: "Statistique",
+    plural: "Statistiques",
   },
   access: {
     read: isAdminOrPublished,
@@ -20,18 +20,24 @@ export const Faqs: CollectionConfig = {
   fields: [
     {
       type: "text",
-      name: "question",
+      name: "value",
       required: true,
-      label: "Question",
-      maxLength: 200,
-      unique: true,
+      label: "Statistique",
+      maxLength: 16,
     },
     {
       type: "textarea",
-      name: "answer",
+      name: "description",
       required: true,
-      label: "Réponse",
-      maxLength: 1000,
+      label: "Description",
+      maxLength: 80,
+    },
+    {
+      type: "upload",
+      relationTo: "icons",
+      name: "icon",
+      label: "Icône représentative",
+      required: false,
     },
     {
       type: "checkbox",
@@ -48,4 +54,4 @@ export const Faqs: CollectionConfig = {
   ],
 };
 
-export default Faqs;
+export default Statistics;

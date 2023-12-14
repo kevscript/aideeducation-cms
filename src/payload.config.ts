@@ -10,14 +10,27 @@ import {
   Users,
   Faqs,
   Avatars,
-  Documents,
-  Jobs,
-  Members,
-  News,
-  Reviews,
+  Icons,
+  Illustrations,
+  Logos,
+  Services,
+  Statistics,
+  Testimonials,
+  Values,
+  Partners,
+  Socials,
 } from "./collections";
+import { Config } from "./payload-types";
+
+declare module "payload" {
+  export interface GeneratedTypes extends Config {}
+}
 
 export default buildConfig({
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
+  cors: [process.env.CLIENT_DEV_URL],
+  csrf: [process.env.CLIENT_DEV_URL],
+  cookiePrefix: "payload-cms",
   admin: {
     user: Users.slug,
     bundler: viteBundler(),
@@ -29,12 +42,31 @@ export default buildConfig({
     components: {
       graphics: { Logo: Logo, Icon: Icon },
     },
-    dateFormat: "dd/LL/yyyy",
+    dateFormat: "HH:mm dd/LL/yy",
   },
   editor: lexicalEditor({}),
-  collections: [Users, Members, Faqs, Jobs, News, Reviews, Avatars, Documents],
+  collections: [
+    Users,
+    Icons,
+    Illustrations,
+    Avatars,
+    Logos,
+    Services,
+    Values,
+    Statistics,
+    Partners,
+    Testimonials,
+    Faqs,
+    Socials,
+  ],
+  upload: {
+    limits: {
+      fileSize: 1000000,
+    },
+  },
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
+    declare: false,
   },
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),

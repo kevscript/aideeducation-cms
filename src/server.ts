@@ -19,11 +19,7 @@ const start = async () => {
     secret: process.env.PAYLOAD_SECRET,
     express: app,
     onInit: async () => {
-      payload.logger.info(
-        `Payload listening at ${
-          process.env.PAYLOAD_PUBLIC_SERVER_URL + payload.getAdminURL()
-        }`,
-      );
+      payload.logger.info(`Payload listening at ${payload.getAdminURL()}`);
     },
   });
 
