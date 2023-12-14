@@ -28,8 +28,8 @@ declare module "payload" {
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  cors: [process.env.CLIENT_DEV_URL],
-  csrf: [process.env.CLIENT_DEV_URL],
+  cors: ["*"],
+  // csrf: [process.env.CLIENT_DEV_URL],
   cookiePrefix: "payload-cms",
   admin: {
     user: Users.slug,
