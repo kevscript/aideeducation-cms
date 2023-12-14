@@ -9,15 +9,19 @@
 export interface Config {
   collections: {
     users: User;
-    members: Member;
-    faqs: Faq;
-    jobs: Job;
-    news: News;
-    reviews: Review;
+    icons: Icon;
+    illustrations: Illustration;
     avatars: Avatar;
-    documents: Document;
-    "payload-preferences": PayloadPreference;
-    "payload-migrations": PayloadMigration;
+    logos: Logo;
+    services: Service;
+    values: Value;
+    statistics: Statistic;
+    partners: Partner;
+    testimonials: Testimonial;
+    faqs: Faq;
+    socials: Social;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   globals: {};
 }
@@ -25,116 +29,147 @@ export interface User {
   id: string;
   first_name: string;
   last_name: string;
-  role: "admin" | "editor";
+  role: 'admin' | 'editor';
   updatedAt: string;
   createdAt: string;
   email: string;
-  resetPasswordToken?: string;
-  resetPasswordExpiration?: string;
-  salt?: string;
-  hash?: string;
-  loginAttempts?: number;
-  lockUntil?: string;
-  password: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
-export interface Member {
+export interface Icon {
   id: string;
-  first_name: string;
-  last_name: string;
-  user_name: string;
-  avatar?: string | Avatar;
-  roles: "developer"[];
-  status: "active" | "retired";
-  joined: string;
-  rank: number;
-  quote?: string;
-  visible?: boolean;
-  full_name?: string;
+  alt: string;
   updatedAt: string;
   createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+export interface Illustration {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
 }
 export interface Avatar {
   id: string;
   alt: string;
   updatedAt: string;
   createdAt: string;
-  url?: string;
-  filename?: string;
-  mimeType?: string;
-  filesize?: number;
-  width?: number;
-  height?: number;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
   sizes?: {
     thumbnail?: {
-      url?: string;
-      width?: number;
-      height?: number;
-      mimeType?: string;
-      filesize?: number;
-      filename?: string;
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
     };
   };
+}
+export interface Logo {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+export interface Service {
+  id: string;
+  title: string;
+  description: string;
+  illustration?: string | Illustration | null;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Value {
+  id: string;
+  title: string;
+  description: string;
+  icon?: string | Icon | null;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Statistic {
+  id: string;
+  value: string;
+  description: string;
+  icon?: string | Icon | null;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Partner {
+  id: string;
+  name: string;
+  description?: string | null;
+  logo?: string | Logo | null;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Testimonial {
+  id: string;
+  avatar?: string | Avatar | null;
+  username: string;
+  rating: number;
+  date?: string | null;
+  comment: string;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Faq {
   id: string;
   question: string;
   answer: string;
-  active: boolean;
+  published: boolean;
   updatedAt: string;
   createdAt: string;
 }
-export interface Job {
+export interface Social {
   id: string;
-  role: string;
-  status: "active" | "inactive";
-  description?: string;
-  visible: boolean;
-  updatedAt: string;
-  createdAt: string;
-}
-export interface News {
-  id: string;
-  title: string;
-  date: string;
-  description?: string;
-  document?: string | Document;
-  content?: {
-    [k: string]: unknown;
-  }[];
-  updatedAt: string;
-  createdAt: string;
-}
-export interface Document {
-  id: string;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string;
-  filename?: string;
-  mimeType?: string;
-  filesize?: number;
-  width?: number;
-  height?: number;
-}
-export interface Review {
-  id: string;
-  username: string;
-  date?: string;
-  avatar?: string | Avatar;
-  title?: string;
-  rating?: number;
-  comment?: string;
-  visible?: boolean;
+  name: string;
+  link: string;
+  icon?: string | Icon | null;
+  published: boolean;
   updatedAt: string;
   createdAt: string;
 }
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: string | User;
   };
-  key?: string;
+  key?: string | null;
   value?:
     | {
         [k: string]: unknown;
@@ -149,25 +184,8 @@ export interface PayloadPreference {
 }
 export interface PayloadMigration {
   id: string;
-  name?: string;
-  batch?: number;
+  name?: string | null;
+  batch?: number | null;
   updatedAt: string;
   createdAt: string;
-}
-
-declare module "payload" {
-  export interface GeneratedTypes {
-    collections: {
-      users: User;
-      members: Member;
-      faqs: Faq;
-      jobs: Job;
-      news: News;
-      reviews: Review;
-      avatars: Avatar;
-      documents: Document;
-      "payload-preferences": PayloadPreference;
-      "payload-migrations": PayloadMigration;
-    };
-  }
 }

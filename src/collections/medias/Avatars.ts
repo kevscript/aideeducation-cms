@@ -19,11 +19,12 @@ export const Avatars: CollectionConfig = {
     singular: "Avatar",
     plural: "Avatars",
   },
+  admin: { group: "Medias" },
   fields: [
     {
       name: "alt",
       type: "text",
-      label: "Description",
+      label: "Description textuelle (ex: 'Avatar de Pierre Dupont')",
       required: true,
     },
   ],
