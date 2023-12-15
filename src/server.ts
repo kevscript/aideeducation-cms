@@ -25,7 +25,7 @@ const start = async () => {
 
   // Add your own express routes here
 
-  app.listen(process.env.PAYLOAD_PORT);
+  app.listen("4000");
 };
 
 start();

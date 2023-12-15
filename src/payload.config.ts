@@ -26,10 +26,16 @@ declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }
 
+const prod = process.env.NODE_ENV === "production";
+
+const serverUrl = prod ? process.env.PAYLOAD_SERVER_URL : `http://localhost:4000`;
+
+const clientUrl = prod ? process.env.PAYLOAD_CLIENT_URL : `http://localhost:3000`;
+
 export default buildConfig({
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  cors: ["*"],
-  // csrf: [process.env.CLIENT_DEV_URL],
+  serverURL: serverUrl,
+  cors: [clientUrl],
+  csrf: [clientUrl],
   cookiePrefix: "payload-cms",
   admin: {
     user: Users.slug,
