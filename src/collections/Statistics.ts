@@ -8,8 +8,9 @@ export const Statistics: CollectionConfig = {
     group: "Contenu",
     description: "L'association à travers les chiffres.",
     useAsTitle: "value",
-    defaultColumns: ["value", "published", "updatedAt", "createdAt"],
+    defaultColumns: ["order", "value", "published", "updatedAt", "createdAt"],
   },
+  defaultSort: "sort",
   labels: {
     singular: "Statistique",
     plural: "Statistiques",
@@ -19,11 +20,25 @@ export const Statistics: CollectionConfig = {
   },
   fields: [
     {
-      type: "text",
-      name: "value",
-      required: true,
-      label: "Statistique",
-      maxLength: 16,
+      type: "row",
+      fields: [
+        {
+          type: "text",
+          name: "value",
+          required: true,
+          label: "Statistique",
+          maxLength: 32,
+          admin: { width: "80%" },
+        },
+        {
+          type: "number",
+          name: "order",
+          label: "Ordre",
+          required: true,
+          defaultValue: 1,
+          admin: { width: "20%", style: { minWidth: "80px" } },
+        },
+      ],
     },
     {
       type: "textarea",
@@ -36,7 +51,7 @@ export const Statistics: CollectionConfig = {
       type: "upload",
       relationTo: "icons",
       name: "icon",
-      label: "Icône représentative",
+      label: "Icône",
       required: false,
     },
     {

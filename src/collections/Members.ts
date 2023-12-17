@@ -9,8 +9,17 @@ export const Members: CollectionConfig = {
     description: "Liste des membres de l'association.",
     useAsTitle: "fullname",
     disableDuplicate: true,
-    defaultColumns: ["full_name", "role", "rank", "joined", "status", "visible"],
+    defaultColumns: [
+      "order",
+      "fullname",
+      "role",
+      "rank",
+      "joined",
+      "status",
+      "published",
+    ],
   },
+  defaultSort: "sort",
   labels: {
     singular: "Membre",
     plural: "Membres",
@@ -20,21 +29,21 @@ export const Members: CollectionConfig = {
       type: "row",
       fields: [
         {
-          name: "first_name",
+          name: "firstname",
           type: "text",
           required: true,
           label: "Prénom",
           admin: { width: "30%" },
         },
         {
-          name: "last_name",
+          name: "lastname",
           type: "text",
           required: true,
           label: "Nom",
           admin: { width: "40%" },
         },
         {
-          name: "user_name",
+          name: "username",
           type: "text",
           unique: true,
           required: true,
@@ -65,7 +74,7 @@ export const Members: CollectionConfig = {
           type: "select",
           options: [
             { value: "active", label: "Actif" },
-            { value: "retired", label: "Retraité" },
+            { value: "retired", label: "Archivé" },
           ],
           hasMany: false,
           defaultValue: "active",
@@ -97,7 +106,14 @@ export const Members: CollectionConfig = {
         },
       ],
     },
-    { name: "quote", type: "textarea", label: "Citation" },
+    {
+      type: "number",
+      name: "order",
+      label: "Ordre",
+      required: true,
+      defaultValue: 1,
+      admin: { style: { width: "80px" } },
+    },
     {
       type: "checkbox",
       name: "published",
@@ -111,7 +127,7 @@ export const Members: CollectionConfig = {
       },
     },
     {
-      name: "full_name",
+      name: "fullname",
       type: "text",
       unique: true,
       admin: { hidden: true },
@@ -119,12 +135,12 @@ export const Members: CollectionConfig = {
       hooks: {
         beforeChange: [
           ({ siblingData }) => {
-            delete siblingData["full_name"];
+            delete siblingData["fullname"];
           },
         ],
         afterRead: [
           ({ data }) => {
-            return `${data.first_name} ${data.last_name}`;
+            return `${data.firstname} ${data.lastname}`;
           },
         ],
       },

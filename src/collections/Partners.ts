@@ -6,9 +6,9 @@ export const Partners: CollectionConfig = {
   slug: "partners",
   admin: {
     group: "Contenu",
-    description: "Les partenaires de l'association",
+    description: "Les partenaires de l'association.",
     useAsTitle: "name",
-    defaultColumns: ["name", "published", "updatedAt", "createdAt"],
+    defaultColumns: ["order", "name", "published", "updatedAt", "createdAt"],
   },
   labels: {
     singular: "Partenaire",
@@ -33,6 +33,14 @@ export const Partners: CollectionConfig = {
       relationTo: "logos",
       required: false,
       label: "Logo",
+    },
+    {
+      type: "number",
+      name: "order",
+      label: "Ordre",
+      required: true,
+      defaultValue: 1,
+      admin: { style: { width: "80px" } },
     },
     {
       type: "checkbox",

@@ -8,8 +8,16 @@ export const Testimonials: CollectionConfig = {
     group: "Contenu",
     description: "Témoignages des utilisateurs.",
     useAsTitle: "username",
-    defaultColumns: ["username", "rating", "published", "updatedAt", "createdAt"],
+    defaultColumns: [
+      "order",
+      "username",
+      "rating",
+      "published",
+      "updatedAt",
+      "createdAt",
+    ],
   },
+  defaultSort: "sort",
   labels: {
     singular: "Témoignage",
     plural: "Témoignages",
@@ -55,6 +63,14 @@ export const Testimonials: CollectionConfig = {
       label: "Commentaire",
       required: true,
       maxLength: 500,
+    },
+    {
+      type: "number",
+      name: "order",
+      label: "Ordre",
+      required: true,
+      defaultValue: 1,
+      admin: { style: { width: "80px" } },
     },
     {
       type: "checkbox",

@@ -18,7 +18,7 @@ export interface Config {
     statistics: Statistic;
     partners: Partner;
     testimonials: Testimonial;
-    faqs: Faq;
+    questions: Question;
     socials: Social;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -102,6 +102,7 @@ export interface Logo {
 export interface Service {
   id: string;
   title: string;
+  order: number;
   description: string;
   illustration?: string | Illustration | null;
   published: boolean;
@@ -113,6 +114,7 @@ export interface Value {
   title: string;
   description: string;
   icon?: string | Icon | null;
+  order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
@@ -120,6 +122,7 @@ export interface Value {
 export interface Statistic {
   id: string;
   value: string;
+  order: number;
   description: string;
   icon?: string | Icon | null;
   published: boolean;
@@ -131,6 +134,7 @@ export interface Partner {
   name: string;
   description?: string | null;
   logo?: string | Logo | null;
+  order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
@@ -142,14 +146,16 @@ export interface Testimonial {
   rating: number;
   date?: string | null;
   comment: string;
+  order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
 }
-export interface Faq {
+export interface Question {
   id: string;
   question: string;
   answer: string;
+  order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
@@ -157,6 +163,7 @@ export interface Faq {
 export interface Social {
   id: string;
   name: string;
+  order: number;
   link: string;
   icon?: string | Icon | null;
   published: boolean;

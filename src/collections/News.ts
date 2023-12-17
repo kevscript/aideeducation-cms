@@ -30,14 +30,14 @@ export const News: CollectionConfig = {
         },
       ],
     },
-    { name: "description", type: "textarea", label: "Entête" },
     {
       name: "document",
       type: "upload",
       relationTo: "documents",
       label: "Document à partager",
+      required: false,
     },
-    { name: "content", type: "richText", label: "Rédaction du contenu" },
+    { name: "content", type: "textarea", label: "Contenu", required: false },
   ],
 };
 
