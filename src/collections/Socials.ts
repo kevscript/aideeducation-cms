@@ -8,24 +8,39 @@ export const Socials: CollectionConfig = {
     group: "Contenu",
     description: "Les réseaux sociaux de l'association",
     useAsTitle: "name",
-    defaultColumns: ["name", "link", "published", "updatedAt", "createdAt"],
+    defaultColumns: ["order", "name", "link", "published", "updatedAt", "createdAt"],
   },
+  defaultSort: "sort",
   labels: {
-    singular: "Réseau Social",
-    plural: "Réseaux Sociaux",
+    singular: "Réseau",
+    plural: "Réseaux",
   },
   access: {
     read: isAdminOrPublished,
   },
   fields: [
     {
-      type: "text",
-      name: "name",
-      required: true,
-      label: "Réseau Social",
-      maxLength: 30,
-      unique: true,
+      type: "row",
+      fields: [
+        {
+          type: "text",
+          name: "name",
+          required: true,
+          label: "Réseau",
+          maxLength: 30,
+          unique: true,
+        },
+        {
+          type: "number",
+          name: "order",
+          label: "Ordre",
+          required: true,
+          defaultValue: 1,
+          admin: { style: { minWidth: "128px", maxWidth: "160px" } },
+        },
+      ],
     },
+
     {
       type: "text",
       name: "link",
@@ -38,8 +53,9 @@ export const Socials: CollectionConfig = {
       name: "icon",
       relationTo: "icons",
       required: false,
-      label: "Icône du réseau social",
+      label: "Icône",
     },
+
     {
       type: "checkbox",
       name: "published",

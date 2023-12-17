@@ -8,7 +8,7 @@ import Logo from "./components/Logo";
 import Icon from "./components/Icon";
 import {
   Users,
-  Faqs,
+  Questions,
   Avatars,
   Icons,
   Illustrations,
@@ -62,7 +62,7 @@ export default buildConfig({
     Statistics,
     Partners,
     Testimonials,
-    Faqs,
+    Questions,
     Socials,
   ],
   upload: {

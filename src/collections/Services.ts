@@ -8,8 +8,9 @@ export const Services: CollectionConfig = {
     group: "Contenu",
     description: "Les services proposés par l'association.",
     useAsTitle: "title",
-    defaultColumns: ["title", "published", "updatedAt", "createdAt"],
+    defaultColumns: ["order", "title", "published", "updatedAt", "createdAt"],
   },
+  defaultSort: "order",
   labels: {
     singular: "Service",
     plural: "Services",
@@ -19,10 +20,24 @@ export const Services: CollectionConfig = {
   },
   fields: [
     {
-      type: "text",
-      name: "title",
-      required: true,
-      label: "Titre",
+      type: "row",
+      fields: [
+        {
+          type: "text",
+          name: "title",
+          required: true,
+          label: "Titre",
+          admin: { width: "80%" },
+        },
+        {
+          type: "number",
+          name: "order",
+          label: "Ordre",
+          required: true,
+          defaultValue: 1,
+          admin: { width: "20%", style: { minWidth: "80px" } },
+        },
+      ],
     },
     {
       type: "textarea",

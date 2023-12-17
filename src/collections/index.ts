@@ -3,7 +3,7 @@ export * from "./medias/Logos";
 export * from "./medias/Illustrations";
 export * from "./medias/Icons";
 export * from "./medias/Documents";
-export * from "./Faqs";
+export * from "./Questions";
 export * from "./Jobs";
 export * from "./Members";
 export * from "./News";

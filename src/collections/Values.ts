@@ -8,8 +8,9 @@ export const Values: CollectionConfig = {
     group: "Contenu",
     description: "Liste des valeurs de l'association",
     useAsTitle: "title",
-    defaultColumns: ["title", "published", "updatedAt", "createdAt"],
+    defaultColumns: ["order", "title", "published", "updatedAt", "createdAt"],
   },
+  defaultSort: "sort",
   labels: {
     singular: "Valeur",
     plural: "Valeurs",
@@ -18,7 +19,7 @@ export const Values: CollectionConfig = {
     read: isAdminOrPublished,
   },
   fields: [
-    { type: "text", name: "title", label: "Valeur", required: true, maxLength: 20 },
+    { type: "text", name: "title", label: "Valeur", required: true, maxLength: 32 },
     {
       type: "textarea",
       name: "description",
@@ -31,6 +32,14 @@ export const Values: CollectionConfig = {
       name: "icon",
       relationTo: "icons",
       label: "Icône représentative",
+    },
+    {
+      type: "number",
+      name: "order",
+      label: "Ordre",
+      required: true,
+      defaultValue: 1,
+      admin: { style: { width: "80px" } },
     },
     {
       type: "checkbox",
