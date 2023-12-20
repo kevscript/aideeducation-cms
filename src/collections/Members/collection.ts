@@ -1,6 +1,8 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminField } from "../access/isAdmin";
-// import MemberThumbnail from "../components/members/MemberThumbnail";
+import { isAdminField } from "../../access/isAdmin";
+import validateMember from "./validation/validateMember";
+import orderField from "../../components/OrderField/config";
+import { isAdminOrPublished } from "../../access/isAdminOrPublished";
 
 export const Members: CollectionConfig = {
   slug: "members",
@@ -9,17 +11,15 @@ export const Members: CollectionConfig = {
     description: "Liste des membres de l'association.",
     useAsTitle: "fullname",
     disableDuplicate: true,
-    defaultColumns: [
-      "order",
-      "fullname",
-      "role",
-      "rank",
-      "joined",
-      "status",
-      "published",
-    ],
+    defaultColumns: ["fullname", "role", "order", "published", "updatedAt"],
   },
-  defaultSort: "sort",
+  access: {
+    read: isAdminOrPublished,
+  },
+  hooks: {
+    beforeValidate: [validateMember],
+  },
+  defaultSort: "order",
   labels: {
     singular: "Membre",
     plural: "Membres",
@@ -33,22 +33,12 @@ export const Members: CollectionConfig = {
           type: "text",
           required: true,
           label: "Prénom",
-          admin: { width: "30%" },
         },
         {
           name: "lastname",
           type: "text",
           required: true,
           label: "Nom",
-          admin: { width: "40%" },
-        },
-        {
-          name: "username",
-          type: "text",
-          unique: true,
-          required: true,
-          label: "Pseudo",
-          admin: { width: "30%" },
         },
       ],
     },
@@ -59,12 +49,11 @@ export const Members: CollectionConfig = {
       label: "Avatar du membre",
     },
     {
-      name: "roles",
-      type: "select",
+      name: "role",
+      type: "text",
       required: true,
-      hasMany: true,
-      options: [{ value: "developer", label: "Développeur" }],
-      label: "Rôles au sein de l'association",
+      label: "Rôle principal",
+      maxLength: 60,
     },
     {
       type: "row",
@@ -73,46 +62,44 @@ export const Members: CollectionConfig = {
           name: "status",
           type: "select",
           options: [
-            { value: "active", label: "Actif" },
-            { value: "retired", label: "Archivé" },
+            { value: "active", label: "Membre actif" },
+            { value: "retired", label: "Ancien membre" },
           ],
           hasMany: false,
           defaultValue: "active",
-          admin: {
-            width: "35%",
-          },
           label: "Statut",
           required: true,
         },
         {
-          name: "joined",
+          name: "joinedAt",
           type: "date",
           required: true,
           admin: {
-            date: { displayFormat: "dd/LL/yyyy", pickerAppearance: "dayOnly" },
-            width: "35%",
+            date: {
+              displayFormat: "dd/LL/yyyy",
+              pickerAppearance: "dayOnly",
+              maxDate: new Date(Date.now()),
+            },
           },
-          label: "Date d'arrivée",
+          defaultValue: () => new Date(Date.now()),
+          label: "Arrivé(e) le",
         },
         {
           name: "rank",
-          type: "number",
-          min: 0,
-          max: 3,
+          type: "select",
+          hasMany: false,
+          options: [
+            { value: "0", label: "[0] - Aucune étoile" },
+            { value: "1", label: "[1] - Une étoile" },
+            { value: "2", label: "[2] - Deux étoiles" },
+            { value: "3", label: "[3] - Trois étoiles" },
+          ],
           required: true,
-          defaultValue: 0,
-          admin: { width: "30%" },
+          defaultValue: "0",
           label: "Niveau de distinction",
         },
+        orderField,
       ],
-    },
-    {
-      type: "number",
-      name: "order",
-      label: "Ordre",
-      required: true,
-      defaultValue: 1,
-      admin: { style: { width: "80px" } },
     },
     {
       type: "checkbox",
@@ -129,9 +116,8 @@ export const Members: CollectionConfig = {
     {
       name: "fullname",
       type: "text",
-      unique: true,
       admin: { hidden: true },
-      label: "Nom",
+      label: "Nom Complet",
       hooks: {
         beforeChange: [
           ({ siblingData }) => {

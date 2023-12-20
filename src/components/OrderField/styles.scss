@@ -1,0 +1,13 @@
+@import "payload/scss";
+
+.order-field {
+  &__input {
+    // Payload exports a mixin from the vars file for quickly applying formInput rules to the class for our input
+    @include formInput;
+  }
+
+  .error {
+    background-color: var(--theme-error-100);
+    border: 1px solid var(--theme-error-400);
+  }
+}

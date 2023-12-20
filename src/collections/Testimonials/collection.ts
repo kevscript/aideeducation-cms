@@ -1,6 +1,8 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminField } from "../access/isAdmin";
-import { isAdminOrPublished } from "../access/isAdminOrPublished";
+import { isAdminField } from "../../access/isAdmin";
+import { isAdminOrPublished } from "../../access/isAdminOrPublished";
+import orderField from "../../components/OrderField/config";
+import TextareaWithCountField from "../../components/TextareaWithCountField";
 
 export const Testimonials: CollectionConfig = {
   slug: "testimonials",
@@ -8,14 +10,7 @@ export const Testimonials: CollectionConfig = {
     group: "Contenu",
     description: "Témoignages des utilisateurs.",
     useAsTitle: "username",
-    defaultColumns: [
-      "order",
-      "username",
-      "rating",
-      "published",
-      "updatedAt",
-      "createdAt",
-    ],
+    defaultColumns: ["username", "rating", "published", "order", "updatedAt"],
   },
   defaultSort: "sort",
   labels: {
@@ -27,13 +22,6 @@ export const Testimonials: CollectionConfig = {
   },
   fields: [
     {
-      name: "avatar",
-      type: "upload",
-      relationTo: "avatars",
-      label: "Avatar de l'utilisateur",
-      required: false,
-    },
-    {
       type: "row",
       fields: [
         {
@@ -41,7 +29,7 @@ export const Testimonials: CollectionConfig = {
           type: "text",
           required: true,
           label: "Nom de l'utilisateur",
-          admin: { width: "60%" },
+          admin: { width: "50%" },
           maxLength: 40,
         },
         {
@@ -49,29 +37,48 @@ export const Testimonials: CollectionConfig = {
           type: "number",
           min: 0,
           max: 5,
-          label: "Note (sur 5)",
+          label: "Note [0-5]",
           admin: { width: "20%" },
           defaultValue: 5,
           required: true,
         },
-        { name: "date", type: "date", label: "Date", admin: { width: "20%" } },
+        {
+          name: "date",
+          type: "date",
+          required: true,
+          admin: {
+            date: {
+              displayFormat: "dd/LL/yyyy",
+              pickerAppearance: "dayOnly",
+              maxDate: new Date(Date.now()),
+            },
+            width: "30%",
+          },
+          defaultValue: () => new Date(Date.now()),
+          label: "Rédigé le",
+        },
       ],
+    },
+    {
+      name: "avatar",
+      type: "upload",
+      relationTo: "avatars",
+      label: "Avatar de l'utilisateur",
+      required: false,
     },
     {
       name: "comment",
       type: "textarea",
       label: "Commentaire",
       required: true,
-      maxLength: 500,
+      maxLength: 200,
+      admin: {
+        components: {
+          Field: TextareaWithCountField,
+        },
+      },
     },
-    {
-      type: "number",
-      name: "order",
-      label: "Ordre",
-      required: true,
-      defaultValue: 1,
-      admin: { style: { width: "80px" } },
-    },
+    orderField,
     {
       type: "checkbox",
       name: "published",

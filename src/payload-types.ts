@@ -10,16 +10,14 @@ export interface Config {
   collections: {
     users: User;
     icons: Icon;
-    illustrations: Illustration;
     avatars: Avatar;
     logos: Logo;
-    services: Service;
-    values: Value;
     statistics: Statistic;
     partners: Partner;
     testimonials: Testimonial;
     questions: Question;
     socials: Social;
+    members: Member;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -42,18 +40,6 @@ export interface User {
   password: string | null;
 }
 export interface Icon {
-  id: string;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-}
-export interface Illustration {
   id: string;
   alt: string;
   updatedAt: string;
@@ -99,32 +85,12 @@ export interface Logo {
   width?: number | null;
   height?: number | null;
 }
-export interface Service {
-  id: string;
-  title: string;
-  order: number;
-  description: string;
-  illustration?: string | Illustration | null;
-  published: boolean;
-  updatedAt: string;
-  createdAt: string;
-}
-export interface Value {
-  id: string;
-  title: string;
-  description: string;
-  icon?: string | Icon | null;
-  order: number;
-  published: boolean;
-  updatedAt: string;
-  createdAt: string;
-}
 export interface Statistic {
   id: string;
   value: string;
-  order: number;
   description: string;
   icon?: string | Icon | null;
+  order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
@@ -141,10 +107,10 @@ export interface Partner {
 }
 export interface Testimonial {
   id: string;
-  avatar?: string | Avatar | null;
   username: string;
   rating: number;
-  date?: string | null;
+  date: string;
+  avatar?: string | Avatar | null;
   comment: string;
   order: number;
   published: boolean;
@@ -163,10 +129,25 @@ export interface Question {
 export interface Social {
   id: string;
   name: string;
-  order: number;
   link: string;
   icon?: string | Icon | null;
+  order: number;
   published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Member {
+  id: string;
+  firstname: string;
+  lastname: string;
+  avatar?: string | Avatar | null;
+  role: string;
+  status: 'active' | 'retired';
+  joinedAt: string;
+  rank: '0' | '1' | '2' | '3';
+  order: number;
+  published: boolean;
+  fullname?: string | null;
   updatedAt: string;
   createdAt: string;
 }
