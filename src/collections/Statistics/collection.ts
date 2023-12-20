@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminOrPublished } from "../access/isAdminOrPublished";
-import { isAdminField } from "../access/isAdmin";
+import { isAdminOrPublished } from "../../access/isAdminOrPublished";
+import { isAdminField } from "../../access/isAdmin";
+import orderField from "../../components/OrderField/config";
 
 export const Statistics: CollectionConfig = {
   slug: "statistics",
@@ -8,9 +9,9 @@ export const Statistics: CollectionConfig = {
     group: "Contenu",
     description: "L'association à travers les chiffres.",
     useAsTitle: "value",
-    defaultColumns: ["order", "value", "published", "updatedAt", "createdAt"],
+    defaultColumns: ["value", "description", "published", "order", "updatedAt"],
   },
-  defaultSort: "sort",
+  defaultSort: "order",
   labels: {
     singular: "Statistique",
     plural: "Statistiques",
@@ -20,32 +21,18 @@ export const Statistics: CollectionConfig = {
   },
   fields: [
     {
-      type: "row",
-      fields: [
-        {
-          type: "text",
-          name: "value",
-          required: true,
-          label: "Statistique",
-          maxLength: 32,
-          admin: { width: "80%" },
-        },
-        {
-          type: "number",
-          name: "order",
-          label: "Ordre",
-          required: true,
-          defaultValue: 1,
-          admin: { width: "20%", style: { minWidth: "80px" } },
-        },
-      ],
+      type: "text",
+      name: "value",
+      required: true,
+      label: "Statistique",
+      maxLength: 32,
     },
     {
       type: "textarea",
       name: "description",
       required: true,
       label: "Description",
-      maxLength: 80,
+      maxLength: 100,
     },
     {
       type: "upload",
@@ -54,6 +41,7 @@ export const Statistics: CollectionConfig = {
       label: "Icône",
       required: false,
     },
+    orderField,
     {
       type: "checkbox",
       name: "published",

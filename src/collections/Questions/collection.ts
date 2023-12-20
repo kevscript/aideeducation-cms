@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminOrPublished } from "../access/isAdminOrPublished";
-import { isAdminField } from "../access/isAdmin";
+import { isAdminOrPublished } from "../../access/isAdminOrPublished";
+import { isAdminField } from "../../access/isAdmin";
 
 export const Questions: CollectionConfig = {
   slug: "questions",
@@ -8,9 +8,9 @@ export const Questions: CollectionConfig = {
     group: "Contenu",
     description: "Foire aux questions, réponses aux questions récurrentes.",
     useAsTitle: "question",
-    defaultColumns: ["question", "published", "updatedAt", "createdAt"],
+    defaultColumns: ["question", "published", "order", "updatedAt"],
   },
-  defaultSort: "sort",
+  defaultSort: "order",
   labels: {
     singular: "Question (FAQ)",
     plural: "Questions (FAQ)",
@@ -40,7 +40,6 @@ export const Questions: CollectionConfig = {
       label: "Ordre",
       required: true,
       defaultValue: 1,
-      admin: { style: { width: "80px" } },
     },
     {
       type: "checkbox",

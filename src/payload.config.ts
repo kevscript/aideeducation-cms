@@ -11,14 +11,12 @@ import {
   Questions,
   Avatars,
   Icons,
-  Illustrations,
   Logos,
-  Services,
   Statistics,
   Testimonials,
-  Values,
   Partners,
   Socials,
+  Members,
 } from "./collections";
 import { Config } from "./payload-types";
 
@@ -27,9 +25,7 @@ declare module "payload" {
 }
 
 const prod = process.env.NODE_ENV === "production";
-
 const serverUrl = prod ? process.env.PAYLOAD_SERVER_URL : `http://localhost:4000`;
-
 const clientUrl = prod ? process.env.PAYLOAD_CLIENT_URL : `http://localhost:3000`;
 
 export default buildConfig({
@@ -54,20 +50,18 @@ export default buildConfig({
   collections: [
     Users,
     Icons,
-    Illustrations,
     Avatars,
     Logos,
-    Services,
-    Values,
     Statistics,
     Partners,
     Testimonials,
     Questions,
     Socials,
+    Members,
   ],
   upload: {
     limits: {
-      fileSize: 1000000,
+      fileSize: 5000000,
     },
   },
   typescript: {

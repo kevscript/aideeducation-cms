@@ -1,5 +1,7 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminField } from "../access/isAdmin";
+import { isAdminField } from "../../access/isAdmin";
+import orderField from "../../components/OrderField/config";
+import { isAdminOrPublished } from "../../access/isAdminOrPublished";
 
 export const Jobs: CollectionConfig = {
   slug: "jobs",
@@ -7,12 +9,15 @@ export const Jobs: CollectionConfig = {
     group: "Contenu",
     description: "Postes à pourvoir au sein de l'association.",
     useAsTitle: "role",
-    defaultColumns: ["order", "role", "status", "published"],
+    defaultColumns: ["role", "status", "order", "published"],
   },
-  defaultSort: "sort",
+  defaultSort: "order",
   labels: {
     singular: "Poste",
     plural: "Postes",
+  },
+  access: {
+    read: isAdminOrPublished,
   },
   fields: [
     {
@@ -46,6 +51,7 @@ export const Jobs: CollectionConfig = {
       type: "textarea",
       label: "Description du rôle",
       required: true,
+      maxLength: 300,
     },
     {
       name: "icon",
@@ -54,14 +60,7 @@ export const Jobs: CollectionConfig = {
       label: "Icône",
       required: false,
     },
-    {
-      type: "number",
-      name: "order",
-      label: "Ordre",
-      required: true,
-      defaultValue: 1,
-      admin: { style: { width: "80px" } },
-    },
+    orderField,
     {
       type: "checkbox",
       name: "published",
@@ -74,8 +73,6 @@ export const Jobs: CollectionConfig = {
         update: isAdminField,
       },
     },
-
-    // job image
   ],
 };
 

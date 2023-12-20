@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminOrPublished } from "../access/isAdminOrPublished";
-import { isAdminField } from "../access/isAdmin";
+import { isAdminOrPublished } from "../../access/isAdminOrPublished";
+import { isAdminField } from "../../access/isAdmin";
+import orderField from "../../components/OrderField/config";
 
 export const Socials: CollectionConfig = {
   slug: "socials",
@@ -8,9 +9,9 @@ export const Socials: CollectionConfig = {
     group: "Contenu",
     description: "Les réseaux sociaux de l'association",
     useAsTitle: "name",
-    defaultColumns: ["order", "name", "link", "published", "updatedAt", "createdAt"],
+    defaultColumns: ["name", "link", "published", "order", "updatedAt"],
   },
-  defaultSort: "sort",
+  defaultSort: "order",
   labels: {
     singular: "Réseau",
     plural: "Réseaux",
@@ -29,25 +30,19 @@ export const Socials: CollectionConfig = {
           label: "Réseau",
           maxLength: 30,
           unique: true,
+          admin: { width: "30%" },
         },
         {
-          type: "number",
-          name: "order",
-          label: "Ordre",
+          type: "text",
+          name: "link",
           required: true,
-          defaultValue: 1,
-          admin: { style: { minWidth: "128px", maxWidth: "160px" } },
+          label: "Lien",
+          maxLength: 1000,
+          admin: { width: "70%" },
         },
       ],
     },
 
-    {
-      type: "text",
-      name: "link",
-      required: true,
-      label: "Lien",
-      maxLength: 1000,
-    },
     {
       type: "upload",
       name: "icon",
@@ -55,7 +50,7 @@ export const Socials: CollectionConfig = {
       required: false,
       label: "Icône",
     },
-
+    orderField,
     {
       type: "checkbox",
       name: "published",
