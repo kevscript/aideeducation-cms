@@ -1,8 +1,8 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminField } from "../../access/isAdmin";
 import { isAdminOrPublished } from "../../access/isAdminOrPublished";
-import orderField from "../../components/OrderField/config";
 import TextareaWithCountField from "../../components/TextareaWithCountField";
+import { orderField } from "../../components/order/config";
+import { publishedField } from "../../components/published/config";
 
 export const Testimonials: CollectionConfig = {
   slug: "testimonials",
@@ -12,7 +12,7 @@ export const Testimonials: CollectionConfig = {
     useAsTitle: "username",
     defaultColumns: ["username", "rating", "published", "order", "updatedAt"],
   },
-  defaultSort: "sort",
+  defaultSort: "order",
   labels: {
     singular: "Témoignage",
     plural: "Témoignages",
@@ -33,19 +33,10 @@ export const Testimonials: CollectionConfig = {
           maxLength: 40,
         },
         {
-          name: "rating",
-          type: "number",
-          min: 0,
-          max: 5,
-          label: "Note [0-5]",
-          admin: { width: "20%" },
-          defaultValue: 5,
-          required: true,
-        },
-        {
           name: "date",
           type: "date",
           required: true,
+          label: "Rédigé le",
           admin: {
             date: {
               displayFormat: "dd/LL/yyyy",
@@ -55,9 +46,20 @@ export const Testimonials: CollectionConfig = {
             width: "30%",
           },
           defaultValue: () => new Date(Date.now()),
-          label: "Rédigé le",
         },
       ],
+    },
+    {
+      name: "comment",
+      type: "textarea",
+      label: "Commentaire",
+      required: true,
+      maxLength: 500,
+      admin: {
+        components: {
+          Field: TextareaWithCountField,
+        },
+      },
     },
     {
       name: "avatar",
@@ -66,32 +68,7 @@ export const Testimonials: CollectionConfig = {
       label: "Avatar de l'utilisateur",
       required: false,
     },
-    {
-      name: "comment",
-      type: "textarea",
-      label: "Commentaire",
-      required: true,
-      maxLength: 200,
-      admin: {
-        components: {
-          Field: TextareaWithCountField,
-        },
-      },
-    },
     orderField,
-    {
-      type: "checkbox",
-      name: "published",
-      required: true,
-      defaultValue: true,
-      label: "Publier",
-      access: {
-        read: isAdminField,
-        create: isAdminField,
-        update: isAdminField,
-      },
-    },
+    publishedField,
   ],
 };
-
-export default Testimonials;

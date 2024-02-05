@@ -6,28 +6,26 @@ export const Avatars: CollectionConfig = {
     staticDir: "media/avatars",
     staticURL: "/media/avatars",
     mimeTypes: ["image/*"],
-    imageSizes: [
-      {
-        name: "thumbnail",
-        width: 300,
-        height: 300,
-        position: "centre",
-      },
-    ],
+    focalPoint: false,
+    crop: false,
   },
   labels: {
     singular: "Avatar",
     plural: "Avatars",
   },
   admin: { group: "Medias" },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: "alt",
       type: "text",
-      label: "Description textuelle (ex: 'Avatar de Pierre Dupont')",
+      label: "Description textuelle",
       required: true,
+      admin: {
+        placeholder: "ex: Avatar de Pierre Dupont",
+      },
     },
   ],
 };
-
-export default Avatars;

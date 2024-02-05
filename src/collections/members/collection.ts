@@ -1,8 +1,9 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminField } from "../../access/isAdmin";
-import validateMember from "./validation/validateMember";
-import orderField from "../../components/OrderField/config";
+import { validateMember } from "./validate-member";
 import { isAdminOrPublished } from "../../access/isAdminOrPublished";
+import { orderField } from "../../components/order/config";
+import { publishedField } from "../../components/published/config";
+import { ASSOCIATION_DEPARTMENTS } from "../../constants/departments";
 
 export const Members: CollectionConfig = {
   slug: "members",
@@ -33,43 +34,40 @@ export const Members: CollectionConfig = {
           type: "text",
           required: true,
           label: "Prénom",
+          maxLength: 30,
         },
         {
           name: "lastname",
           type: "text",
           required: true,
           label: "Nom",
+          maxLength: 30,
         },
       ],
-    },
-    {
-      name: "avatar",
-      type: "upload",
-      relationTo: "avatars",
-      label: "Avatar du membre",
-    },
-    {
-      name: "role",
-      type: "text",
-      required: true,
-      label: "Rôle principal",
-      maxLength: 60,
     },
     {
       type: "row",
       fields: [
         {
-          name: "status",
+          name: "department",
           type: "select",
-          options: [
-            { value: "active", label: "Membre actif" },
-            { value: "retired", label: "Ancien membre" },
-          ],
           hasMany: false,
-          defaultValue: "active",
-          label: "Statut",
+          options: [...ASSOCIATION_DEPARTMENTS],
+          label: "Département Principal",
           required: true,
         },
+        {
+          name: "role",
+          type: "text",
+          required: true,
+          label: "Rôle principal",
+          maxLength: 50,
+        },
+      ],
+    },
+    {
+      type: "row",
+      fields: [
         {
           name: "joinedAt",
           type: "date",
@@ -98,21 +96,17 @@ export const Members: CollectionConfig = {
           defaultValue: "0",
           label: "Niveau de distinction",
         },
-        orderField,
       ],
     },
     {
-      type: "checkbox",
-      name: "published",
-      required: true,
-      defaultValue: true,
-      label: "Publier",
-      access: {
-        read: isAdminField,
-        create: isAdminField,
-        update: isAdminField,
-      },
+      name: "avatar",
+      type: "upload",
+      relationTo: "avatars",
+      label: "Avatar du membre",
+      required: false,
     },
+    orderField,
+    publishedField,
     {
       name: "fullname",
       type: "text",
@@ -133,5 +127,3 @@ export const Members: CollectionConfig = {
     },
   ],
 };
-
-export default Members;

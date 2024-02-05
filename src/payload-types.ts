@@ -9,17 +9,23 @@
 export interface Config {
   collections: {
     users: User;
-    icons: Icon;
-    avatars: Avatar;
-    logos: Logo;
+    services: Service;
+    "team-values": TeamValue;
     statistics: Statistic;
-    partners: Partner;
+    faqs: Faq;
     testimonials: Testimonial;
-    questions: Question;
-    socials: Social;
     members: Member;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    orientations: Orientation;
+    partners: Partner;
+    jobs: Job;
+    socials: Social;
+    avatars: Avatar;
+    documents: Document;
+    icons: Icon;
+    videos: Video;
+    logos: Logo;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   globals: {};
 }
@@ -27,7 +33,7 @@ export interface User {
   id: string;
   first_name: string;
   last_name: string;
-  role: 'admin' | 'editor';
+  role: "admin" | "editor";
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -38,6 +44,25 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
+}
+export interface Service {
+  id: string;
+  title: string;
+  description: string;
+  order: number;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface TeamValue {
+  id: string;
+  title: string;
+  description: string;
+  icon?: string | Icon | null;
+  order: number;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Icon {
   id: string;
@@ -51,6 +76,35 @@ export interface Icon {
   width?: number | null;
   height?: number | null;
 }
+export interface Statistic {
+  id: string;
+  title: string;
+  description: string;
+  order: number;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  order: number;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Testimonial {
+  id: string;
+  username: string;
+  date: string;
+  comment: string;
+  avatar?: string | Avatar | null;
+  order: number;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
 export interface Avatar {
   id: string;
   alt: string;
@@ -62,16 +116,43 @@ export interface Avatar {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
+}
+export interface Member {
+  id: string;
+  firstname: string;
+  lastname: string;
+  department:
+    | "direction-generale"
+    | "departement-interieur"
+    | "departement-exterieur"
+    | "departement-pedagogique";
+  role: string;
+  joinedAt: string;
+  rank: "0" | "1" | "2" | "3";
+  avatar?: string | Avatar | null;
+  order: number;
+  published: boolean;
+  fullname?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Orientation {
+  id: string;
+  name: string;
+  description?: string | null;
+  links?:
+    | {
+        label: string;
+        link: string;
+        order: number;
+        id?: string | null;
+      }[]
+    | null;
+  logo?: string | Logo | null;
+  order: number;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Logo {
   id: string;
@@ -85,42 +166,30 @@ export interface Logo {
   width?: number | null;
   height?: number | null;
 }
-export interface Statistic {
-  id: string;
-  value: string;
-  description: string;
-  icon?: string | Icon | null;
-  order: number;
-  published: boolean;
-  updatedAt: string;
-  createdAt: string;
-}
 export interface Partner {
   id: string;
   name: string;
   description?: string | null;
+  links?:
+    | {
+        label: string;
+        link: string;
+        order: number;
+        id?: string | null;
+      }[]
+    | null;
   logo?: string | Logo | null;
   order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
 }
-export interface Testimonial {
+export interface Job {
   id: string;
-  username: string;
-  rating: number;
-  date: string;
-  avatar?: string | Avatar | null;
-  comment: string;
-  order: number;
-  published: boolean;
-  updatedAt: string;
-  createdAt: string;
-}
-export interface Question {
-  id: string;
-  question: string;
-  answer: string;
+  role: string;
+  status: "active" | "inactive";
+  description: string;
+  icon?: string | Icon | null;
   order: number;
   published: boolean;
   updatedAt: string;
@@ -130,31 +199,40 @@ export interface Social {
   id: string;
   name: string;
   link: string;
-  icon?: string | Icon | null;
+  icon: string | Icon;
   order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
 }
-export interface Member {
+export interface Document {
   id: string;
-  firstname: string;
-  lastname: string;
-  avatar?: string | Avatar | null;
-  role: string;
-  status: 'active' | 'retired';
-  joinedAt: string;
-  rank: '0' | '1' | '2' | '3';
-  order: number;
-  published: boolean;
-  fullname?: string | null;
+  alt: string;
   updatedAt: string;
   createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+export interface Video {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
 }
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;

@@ -1,24 +1,29 @@
 import path from "path";
-
+import { Config } from "./payload-types";
+import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
-import { viteBundler } from "@payloadcms/bundler-vite";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload/config";
 import Logo from "./components/Logo";
 import Icon from "./components/Icon";
 import {
   Users,
-  Questions,
-  Avatars,
-  Icons,
-  Logos,
+  Services,
+  TeamValues,
   Statistics,
   Testimonials,
-  Partners,
-  Socials,
+  Faqs,
+  Jobs,
+  Orientations,
   Members,
+  Socials,
+  Avatars,
+  Documents,
+  Icons,
+  Videos,
+  Logos,
+  Partners,
 } from "./collections";
-import { Config } from "./payload-types";
 
 declare module "payload" {
   export interface GeneratedTypes extends Config {}
@@ -35,7 +40,7 @@ export default buildConfig({
   cookiePrefix: "payload-cms",
   admin: {
     user: Users.slug,
-    bundler: viteBundler(),
+    bundler: webpackBundler(),
     meta: {
       titleSuffix: "- AideEducation",
       favicon: "/assets/logo.svg",
@@ -49,19 +54,25 @@ export default buildConfig({
   editor: lexicalEditor({}),
   collections: [
     Users,
-    Icons,
-    Avatars,
-    Logos,
+    Services,
+    TeamValues,
     Statistics,
-    Partners,
+    Faqs,
     Testimonials,
-    Questions,
-    Socials,
     Members,
+    Orientations,
+    Partners,
+    Jobs,
+    Socials,
+    Avatars,
+    Documents,
+    Icons,
+    Videos,
+    Logos,
   ],
   upload: {
     limits: {
-      fileSize: 5000000,
+      fileSize: 10000000,
     },
   },
   typescript: {

@@ -6,18 +6,26 @@ export const Documents: CollectionConfig = {
     staticDir: "media/documents",
     staticURL: "/media/documents",
     mimeTypes: ["application/pdf", "image/*"],
+    focalPoint: false,
+    crop: false,
   },
   labels: {
     singular: "Document",
     plural: "Documents",
   },
   admin: { group: "Medias" },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: "alt",
       type: "text",
-      label: "Description",
+      label: "Description textuelle",
       required: true,
+      admin: {
+        placeholder: "ex: Compte rendu de la réunion du 10/05/23",
+      },
     },
   ],
 };

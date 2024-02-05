@@ -6,18 +6,26 @@ export const Icons: CollectionConfig = {
     staticDir: "media/icons",
     staticURL: "/media/icons",
     mimeTypes: ["image/svg+xml"],
+    focalPoint: false,
+    crop: false,
   },
   labels: {
     singular: "Icône",
     plural: "Icônes",
   },
   admin: { group: "Medias" },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: "alt",
       type: "text",
-      label: "Description textuelle (ex: 'Icône de coeur')",
+      label: "Description textuelle",
       required: true,
+      admin: {
+        placeholder: "ex: Icone Discord",
+      },
     },
   ],
 };

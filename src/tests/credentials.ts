@@ -1,5 +1,5 @@
 import { User } from "payload/generated-types";
-import { CmsRole } from "../access/roles";
+import { CmsRole } from "../constants/roles";
 
 type Credentials = {
   [key in CmsRole["value"]]: Omit<User, "id" | "createdAt" | "updatedAt">;
