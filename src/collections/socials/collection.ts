@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrPublished } from "../../access/isAdminOrPublished";
-import { isAdminField } from "../../access/isAdmin";
-import orderField from "../../components/OrderField/config";
+import { orderField } from "../../components/order/config";
+import { publishedField } from "../../components/published/config";
 
 export const Socials: CollectionConfig = {
   slug: "socials",
@@ -47,23 +47,10 @@ export const Socials: CollectionConfig = {
       type: "upload",
       name: "icon",
       relationTo: "icons",
-      required: false,
+      required: true,
       label: "Icône",
     },
     orderField,
-    {
-      type: "checkbox",
-      name: "published",
-      required: true,
-      defaultValue: true,
-      label: "Publier",
-      access: {
-        read: isAdminField,
-        create: isAdminField,
-        update: isAdminField,
-      },
-    },
+    publishedField,
   ],
 };
-
-export default Socials;

@@ -1,9 +1,10 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminOrPublished } from "../../access/isAdminOrPublished";
-import { isAdminField } from "../../access/isAdmin";
+import { orderField } from "../../components/order/config";
+import { publishedField } from "../../components/published/config";
 
-export const Questions: CollectionConfig = {
-  slug: "questions",
+export const Faqs: CollectionConfig = {
+  slug: "faqs",
   admin: {
     group: "Contenu",
     description: "Foire aux questions, réponses aux questions récurrentes.",
@@ -34,26 +35,7 @@ export const Questions: CollectionConfig = {
       label: "Réponse",
       maxLength: 1000,
     },
-    {
-      type: "number",
-      name: "order",
-      label: "Ordre",
-      required: true,
-      defaultValue: 1,
-    },
-    {
-      type: "checkbox",
-      name: "published",
-      required: true,
-      defaultValue: true,
-      label: "Publier",
-      access: {
-        read: isAdminField,
-        create: isAdminField,
-        update: isAdminField,
-      },
-    },
+    orderField,
+    publishedField,
   ],
 };
-
-export default Questions;

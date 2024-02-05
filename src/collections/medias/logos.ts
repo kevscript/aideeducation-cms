@@ -14,14 +14,18 @@ export const Logos: CollectionConfig = {
     plural: "Logos",
   },
   admin: { group: "Medias" },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: "alt",
       type: "text",
-      label: "Description textuelle (ex. 'Logo de X')",
+      label: "Description textuelle",
       required: true,
+      admin: {
+        placeholder: "ex: Logo de ...",
+      },
     },
   ],
 };
-
-export default Logos;

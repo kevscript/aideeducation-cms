@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload/types";
-import { CMS_ROLES } from "../access/roles";
-import { isAdmin, isAdminField } from "../access/isAdmin";
-import { isAdminOrSelf } from "../access/isAdminOrSelf";
+import { isAdmin, isAdminField } from "../../access/isAdmin";
+import { isAdminOrSelf } from "../../access/isAdminOrSelf";
+import { CMS_ROLES } from "../../constants/roles";
 
 export const Users: CollectionConfig = {
   slug: "users",
@@ -74,5 +74,3 @@ export const Users: CollectionConfig = {
     },
   ],
 };
-
-export default Users;

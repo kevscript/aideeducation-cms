@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminField } from "../../access/isAdmin";
-import orderField from "../../components/OrderField/config";
 import { isAdminOrPublished } from "../../access/isAdminOrPublished";
+import { orderField } from "../../components/order/config";
+import { publishedField } from "../../components/published/config";
 
 export const Jobs: CollectionConfig = {
   slug: "jobs",
@@ -13,8 +13,8 @@ export const Jobs: CollectionConfig = {
   },
   defaultSort: "order",
   labels: {
-    singular: "Poste",
-    plural: "Postes",
+    singular: "Recrutement",
+    plural: "Recrutements",
   },
   access: {
     read: isAdminOrPublished,
@@ -28,7 +28,7 @@ export const Jobs: CollectionConfig = {
           type: "text",
           required: true,
           label: "Rôle",
-          admin: { width: "80%" },
+          admin: { width: "80%", placeholder: "ex: Développeur Web" },
           unique: true,
         },
         {
@@ -61,19 +61,6 @@ export const Jobs: CollectionConfig = {
       required: false,
     },
     orderField,
-    {
-      type: "checkbox",
-      name: "published",
-      required: true,
-      defaultValue: true,
-      label: "Publier",
-      access: {
-        read: isAdminField,
-        create: isAdminField,
-        update: isAdminField,
-      },
-    },
+    publishedField,
   ],
 };
-
-export default Jobs;
