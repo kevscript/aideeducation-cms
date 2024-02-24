@@ -1,7 +1,8 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminOrPublished } from "../../access/isAdminOrPublished";
 import { orderField } from "../../components/order/config";
 import { publishedField } from "../../components/published/config";
+import { isEditorOrPublished } from "../../access/isEditorOrPublished";
+import { isEditor } from "../../access/isEditor";
 
 export const Services: CollectionConfig = {
   slug: "services",
@@ -17,7 +18,10 @@ export const Services: CollectionConfig = {
     plural: "Services",
   },
   access: {
-    read: isAdminOrPublished,
+    read: isEditorOrPublished,
+    update: isEditor,
+    create: isEditor,
+    delete: isEditor,
   },
   fields: [
     {

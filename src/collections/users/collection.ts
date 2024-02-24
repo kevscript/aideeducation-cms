@@ -1,51 +1,32 @@
+import { SelectRoleField } from "../../components/SelectRole";
+import {
+  adminUserAccess,
+  deleteUserAccess,
+  readUserAccess,
+  updateUserAccess,
+} from "./access";
+
 import { CollectionConfig } from "payload/types";
-import { isAdmin, isAdminField } from "../../access/isAdmin";
-import { isAdminOrSelf } from "../../access/isAdminOrSelf";
-import { CMS_ROLES } from "../../constants/roles";
 
 export const Users: CollectionConfig = {
   slug: "users",
-  auth: true,
+  auth: {
+    verify: false,
+    disableLocalStrategy: true,
+  },
   admin: {
     group: "Administration",
     useAsTitle: "email",
-  },
-  labels: {
-    singular: "Utilisateur",
-    plural: "Utilisateurs",
+    defaultColumns: ["lastname", "firstname", "email", "role"],
   },
   access: {
-    create: isAdmin,
-    read: isAdminOrSelf,
-    update: isAdminOrSelf,
-    delete: isAdmin,
+    create: () => false,
+    update: updateUserAccess,
+    read: readUserAccess,
+    delete: deleteUserAccess,
+    admin: adminUserAccess,
   },
   fields: [
-    {
-      type: "row",
-      fields: [
-        {
-          type: "text",
-          name: "first_name",
-          label: "Prénom",
-          required: true,
-          access: {
-            create: isAdminField,
-            update: isAdminField,
-          },
-        },
-        {
-          type: "text",
-          name: "last_name",
-          label: "Nom",
-          required: true,
-          access: {
-            create: isAdminField,
-            update: isAdminField,
-          },
-        },
-      ],
-    },
     {
       name: "email",
       type: "email",
@@ -53,24 +34,37 @@ export const Users: CollectionConfig = {
       unique: true,
       required: true,
       saveToJWT: true,
-      access: {
-        create: isAdminField,
-        update: isAdminField,
-      },
+      admin: { readOnly: true },
+      access: { update: () => false },
     },
     {
-      type: "select",
-      name: "role",
-      label: "Rôle CMS",
-      hasMany: false,
-      required: true,
-      options: [...CMS_ROLES],
-      defaultValue: CMS_ROLES.find((r) => r.label === "Editeur").value,
-      saveToJWT: true,
-      access: {
-        create: isAdminField,
-        update: isAdminField,
-      },
+      name: "sub",
+      label: "sub",
+      type: "text",
+      admin: { disabled: true },
+      access: { update: () => false },
     },
+    {
+      name: "firstname",
+      label: "Prénom",
+      type: "text",
+      admin: { readOnly: true },
+      access: { update: () => false },
+    },
+    {
+      name: "lastname",
+      label: "Nom de famille",
+      type: "text",
+      admin: { readOnly: true },
+      access: { update: () => false },
+    },
+    {
+      name: "pictureURL",
+      label: "pictureURL",
+      type: "text",
+      admin: { readOnly: true, hidden: true },
+      access: { update: () => false },
+    },
+    SelectRoleField,
   ],
 };

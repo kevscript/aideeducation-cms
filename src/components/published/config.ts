@@ -1,5 +1,5 @@
 import { CheckboxField } from "payload/types";
-import { isAdminField } from "../../access/isAdmin";
+import { isEditorField } from "../../access/isEditor";
 
 export const publishedField: CheckboxField = {
   type: "checkbox",
@@ -8,9 +8,9 @@ export const publishedField: CheckboxField = {
   defaultValue: true,
   label: "Publier l'élément",
   access: {
-    read: isAdminField,
-    create: isAdminField,
-    update: isAdminField,
+    read: isEditorField,
+    create: isEditorField,
+    update: isEditorField,
   },
   admin: {
     position: "sidebar",

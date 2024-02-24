@@ -10,7 +10,7 @@ export interface Config {
   collections: {
     users: User;
     services: Service;
-    "team-values": TeamValue;
+    'team-values': TeamValue;
     statistics: Statistic;
     faqs: Faq;
     testimonials: Testimonial;
@@ -24,26 +24,21 @@ export interface Config {
     icons: Icon;
     videos: Video;
     logos: Logo;
-    "payload-preferences": PayloadPreference;
-    "payload-migrations": PayloadMigration;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   globals: {};
 }
 export interface User {
   id: string;
-  first_name: string;
-  last_name: string;
-  role: "admin" | "editor";
+  email: string;
+  sub?: string | null;
+  firstname?: string | null;
+  lastname?: string | null;
+  pictureURL?: string | null;
+  role: 'root' | 'admin' | 'editor' | 'pending';
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
 }
 export interface Service {
   id: string;
@@ -121,14 +116,10 @@ export interface Member {
   id: string;
   firstname: string;
   lastname: string;
-  department:
-    | "direction-generale"
-    | "departement-interieur"
-    | "departement-exterieur"
-    | "departement-pedagogique";
+  department: 'direction-generale' | 'departement-interieur' | 'departement-exterieur' | 'departement-pedagogique';
   role: string;
   joinedAt: string;
-  rank: "0" | "1" | "2" | "3";
+  rank: '0' | '1' | '2' | '3';
   avatar?: string | Avatar | null;
   order: number;
   published: boolean;
@@ -187,7 +178,7 @@ export interface Partner {
 export interface Job {
   id: string;
   role: string;
-  status: "active" | "inactive";
+  status: 'active' | 'inactive';
   description: string;
   icon?: string | Icon | null;
   order: number;
@@ -232,7 +223,7 @@ export interface Video {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: string | User;
   };
   key?: string | null;

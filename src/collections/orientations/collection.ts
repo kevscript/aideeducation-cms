@@ -1,7 +1,8 @@
 import { CollectionConfig } from "payload/types";
-import { isAdminOrPublished } from "../../access/isAdminOrPublished";
 import { orderField } from "../../components/order/config";
 import { publishedField } from "../../components/published/config";
+import { isEditorOrPublished } from "../../access/isEditorOrPublished";
+import { isEditor } from "../../access/isEditor";
 
 export const Orientations: CollectionConfig = {
   slug: "orientations",
@@ -17,7 +18,10 @@ export const Orientations: CollectionConfig = {
     plural: "Orientations",
   },
   access: {
-    read: isAdminOrPublished,
+    read: isEditorOrPublished,
+    create: isEditor,
+    update: isEditor,
+    delete: isEditor,
   },
   fields: [
     {

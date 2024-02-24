@@ -24,6 +24,7 @@ import {
   Logos,
   Partners,
 } from "./collections";
+import GoogleLogin from "./components/GoogleLogin";
 
 declare module "payload" {
   export interface GeneratedTypes extends Config {}
@@ -48,6 +49,7 @@ export default buildConfig({
     },
     components: {
       graphics: { Logo: Logo, Icon: Icon },
+      afterLogin: [GoogleLogin],
     },
     dateFormat: "HH:mm dd/LL/yy",
   },

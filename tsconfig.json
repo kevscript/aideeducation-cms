@@ -9,6 +9,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "jsx": "react",
+    "types": ["jest"],
     "paths": {
       "payload/generated-types": ["./src/payload-types.ts"]
     }

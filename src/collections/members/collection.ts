@@ -1,9 +1,10 @@
 import { CollectionConfig } from "payload/types";
 import { validateMember } from "./validate-member";
-import { isAdminOrPublished } from "../../access/isAdminOrPublished";
 import { orderField } from "../../components/order/config";
 import { publishedField } from "../../components/published/config";
 import { ASSOCIATION_DEPARTMENTS } from "../../constants/departments";
+import { isEditorOrPublished } from "../../access/isEditorOrPublished";
+import { isEditor } from "../../access/isEditor";
 
 export const Members: CollectionConfig = {
   slug: "members",
@@ -15,7 +16,10 @@ export const Members: CollectionConfig = {
     defaultColumns: ["fullname", "role", "order", "published", "updatedAt"],
   },
   access: {
-    read: isAdminOrPublished,
+    read: isEditorOrPublished,
+    create: isEditor,
+    update: isEditor,
+    delete: isEditor,
   },
   hooks: {
     beforeValidate: [validateMember],
