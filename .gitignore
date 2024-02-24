@@ -8,3 +8,10 @@ dist
 # avoid uploading the local media storage
 /media
 src/media
+
+
+# testing files
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
