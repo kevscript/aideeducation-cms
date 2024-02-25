@@ -68,7 +68,11 @@ export const readUserAccess: Access<unknown, User> = ({ req: { user } }) => {
 
 export const adminUserAccess = ({ req: { user } }) => {
   if (user) {
-    if (user.role === CMS_ROLES.root.value || user.role === CMS_ROLES.admin.value) {
+    if (
+      user.role === CMS_ROLES.root.value ||
+      user.role === CMS_ROLES.admin.value ||
+      user.role === CMS_ROLES.editor.value
+    ) {
       return true;
     }
   }
