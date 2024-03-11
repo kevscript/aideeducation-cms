@@ -8,7 +8,7 @@ export const Association: GlobalConfig = {
     group: "Qui sommes-nous",
   },
   access: {
-    read: isEditor,
+    read: () => true,
     update: isEditor,
   },
   label: "Association",
