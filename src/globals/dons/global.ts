@@ -7,7 +7,7 @@ export const Dons: GlobalConfig = {
     group: "Nous soutenir",
   },
   access: {
-    read: isEditor,
+    read: () => true,
     update: isEditor,
   },
   label: "Dons",
