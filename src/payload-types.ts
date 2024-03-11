@@ -27,7 +27,10 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    association: Association;
+    dons: Don;
+  };
 }
 export interface User {
   id: string;
@@ -245,4 +248,25 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+export interface Association {
+  id: string;
+  presentation: string;
+  events?:
+    | {
+        title: string;
+        date: string;
+        published: boolean;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+export interface Don {
+  id: string;
+  description: string;
+  helloAssoUrl?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }

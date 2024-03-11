@@ -24,6 +24,7 @@ import {
   Logos,
   Partners,
 } from "./collections";
+import { Association, Dons } from "./globals";
 import GoogleLogin from "./components/GoogleLogin";
 
 declare module "payload" {
@@ -54,6 +55,7 @@ export default buildConfig({
     dateFormat: "HH:mm dd/LL/yy",
   },
   editor: lexicalEditor({}),
+  globals: [Association, Dons],
   collections: [
     Users,
     Services,

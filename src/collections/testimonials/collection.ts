@@ -8,7 +8,7 @@ import { isEditor } from "../../access/isEditor";
 export const Testimonials: CollectionConfig = {
   slug: "testimonials",
   admin: {
-    group: "Contenu",
+    group: "Acceuil",
     description: "Témoignages des utilisateurs.",
     useAsTitle: "username",
     defaultColumns: ["username", "rating", "published", "order", "updatedAt"],

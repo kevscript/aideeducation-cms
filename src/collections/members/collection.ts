@@ -9,7 +9,7 @@ import { isEditor } from "../../access/isEditor";
 export const Members: CollectionConfig = {
   slug: "members",
   admin: {
-    group: "Contenu",
+    group: "Qui sommes-nous",
     description: "Liste des membres de l'association.",
     useAsTitle: "fullname",
     disableDuplicate: true,
