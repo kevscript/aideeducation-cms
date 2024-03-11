@@ -7,7 +7,7 @@ import { isEditor } from "../../access/isEditor";
 export const Faqs: CollectionConfig = {
   slug: "faqs",
   admin: {
-    group: "Contenu",
+    group: "Acceuil",
     description: "Foire aux questions, réponses aux questions récurrentes.",
     useAsTitle: "question",
     defaultColumns: ["question", "published", "order", "updatedAt"],

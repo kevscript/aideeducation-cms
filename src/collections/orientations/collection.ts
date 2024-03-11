@@ -7,7 +7,7 @@ import { isEditor } from "../../access/isEditor";
 export const Orientations: CollectionConfig = {
   slug: "orientations",
   admin: {
-    group: "Contenu",
+    group: "Documentation",
     description: "Les sources d'aide à l'orientation proposées par l'association.",
     useAsTitle: "name",
     defaultColumns: ["name", "order", "published", "updatedAt", "createdAt"],

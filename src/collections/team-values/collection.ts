@@ -7,7 +7,7 @@ import { isEditor } from "../../access/isEditor";
 export const TeamValues: CollectionConfig = {
   slug: "team-values",
   admin: {
-    group: "Contenu",
+    group: "Acceuil",
     description: "Liste des valeurs de l'association",
     useAsTitle: "title",
     defaultColumns: ["title", "order", "published", "updatedAt", "createdAt"],

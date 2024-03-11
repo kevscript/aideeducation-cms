@@ -7,7 +7,7 @@ import { isEditor } from "../../access/isEditor";
 export const Statistics: CollectionConfig = {
   slug: "statistics",
   admin: {
-    group: "Contenu",
+    group: "Acceuil",
     description: "L'association à travers les chiffres.",
     useAsTitle: "title",
     defaultColumns: ["title", "description", "published", "order", "updatedAt"],

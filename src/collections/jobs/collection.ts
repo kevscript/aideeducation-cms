@@ -7,7 +7,7 @@ import { isEditorOrPublished } from "../../access/isEditorOrPublished";
 export const Jobs: CollectionConfig = {
   slug: "jobs",
   admin: {
-    group: "Contenu",
+    group: "Nous soutenir",
     description: "Postes à pourvoir au sein de l'association.",
     useAsTitle: "role",
     defaultColumns: ["role", "status", "order", "published"],

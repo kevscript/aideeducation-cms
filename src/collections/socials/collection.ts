@@ -7,15 +7,15 @@ import { isEditor } from "../../access/isEditor";
 export const Socials: CollectionConfig = {
   slug: "socials",
   admin: {
-    group: "Contenu",
+    group: "Global",
     description: "Les réseaux sociaux de l'association",
     useAsTitle: "name",
     defaultColumns: ["name", "link", "published", "order", "updatedAt"],
   },
   defaultSort: "order",
   labels: {
-    singular: "Réseau",
-    plural: "Réseaux",
+    singular: "Réseau Social",
+    plural: "Réseaux Sociaux",
   },
   access: {
     read: isEditorOrPublished,

@@ -7,7 +7,7 @@ import { isEditorOrPublished } from "../../access/isEditorOrPublished";
 export const Partners: CollectionConfig = {
   slug: "partners",
   admin: {
-    group: "Contenu",
+    group: "Nous soutenir",
     description: "La liste des partenaires de l'association.",
     useAsTitle: "name",
     defaultColumns: ["name", "order", "published", "updatedAt", "createdAt"],
