@@ -39,7 +39,7 @@ export const Orientations: CollectionConfig = {
       name: "description",
       required: false,
       label: "Description",
-      maxLength: 1000,
+      maxLength: 5000,
       admin: {
         placeholder: "Expliquer l'activité de l'organisme en question.",
       },
@@ -59,7 +59,7 @@ export const Orientations: CollectionConfig = {
           admin: {
             placeholder: "ex: Site Internet",
           },
-          maxLength: 50,
+          maxLength: 100,
         },
         {
           type: "text",

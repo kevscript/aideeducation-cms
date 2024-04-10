@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload/types";
+import { isEditor } from "../../access/isEditor";
 
 export const Documents: CollectionConfig = {
   slug: "documents",
@@ -16,6 +17,9 @@ export const Documents: CollectionConfig = {
   admin: { group: "Medias" },
   access: {
     read: () => true,
+    update: isEditor,
+    create: isEditor,
+    delete: isEditor,
   },
   fields: [
     {

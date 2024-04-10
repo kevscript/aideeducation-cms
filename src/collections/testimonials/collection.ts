@@ -54,6 +54,13 @@ export const Testimonials: CollectionConfig = {
       ],
     },
     {
+      name: "title",
+      type: "text",
+      label: "Entête",
+      required: false,
+      maxLength: 100,
+    },
+    {
       name: "comment",
       type: "textarea",
       label: "Commentaire",

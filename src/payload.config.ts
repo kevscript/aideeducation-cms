@@ -23,6 +23,7 @@ import {
   Videos,
   Logos,
   Partners,
+  Images,
 } from "./collections";
 import { Association, Dons } from "./globals";
 import GoogleLogin from "./components/GoogleLogin";
@@ -71,6 +72,7 @@ export default buildConfig({
     Avatars,
     Documents,
     Icons,
+    Images,
     Videos,
     Logos,
   ],

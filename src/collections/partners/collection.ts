@@ -29,7 +29,7 @@ export const Partners: CollectionConfig = {
       name: "name",
       required: true,
       label: "Nom",
-      maxLength: 50,
+      maxLength: 100,
       admin: {
         placeholder: "ex: Google, Parcoursup,...",
       },
@@ -39,7 +39,7 @@ export const Partners: CollectionConfig = {
       name: "description",
       required: false,
       label: "Description",
-      maxLength: 1000,
+      maxLength: 5000,
       admin: {
         placeholder: "Expliquer la relation avec le paprtenaire en question.",
       },

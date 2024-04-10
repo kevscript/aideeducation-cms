@@ -22,6 +22,7 @@ export interface Config {
     avatars: Avatar;
     documents: Document;
     icons: Icon;
+    images: Image;
     videos: Video;
     logos: Logo;
     'payload-preferences': PayloadPreference;
@@ -32,6 +33,10 @@ export interface Config {
     dons: Don;
   };
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
 export interface User {
   id: string;
   email: string;
@@ -43,15 +48,40 @@ export interface User {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
 export interface Service {
   id: string;
   title: string;
   description: string;
+  image: string | Image;
   order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "images".
+ */
+export interface Image {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-values".
+ */
 export interface TeamValue {
   id: string;
   title: string;
@@ -62,6 +92,10 @@ export interface TeamValue {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
 export interface Icon {
   id: string;
   alt: string;
@@ -74,15 +108,25 @@ export interface Icon {
   width?: number | null;
   height?: number | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statistics".
+ */
 export interface Statistic {
   id: string;
+  prefix?: string | null;
   title: string;
+  suffix?: string | null;
   description: string;
   order: number;
   published: boolean;
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
 export interface Faq {
   id: string;
   question: string;
@@ -92,10 +136,15 @@ export interface Faq {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
 export interface Testimonial {
   id: string;
   username: string;
   date: string;
+  title?: string | null;
   comment: string;
   avatar?: string | Avatar | null;
   order: number;
@@ -103,6 +152,10 @@ export interface Testimonial {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "avatars".
+ */
 export interface Avatar {
   id: string;
   alt: string;
@@ -115,6 +168,10 @@ export interface Avatar {
   width?: number | null;
   height?: number | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "members".
+ */
 export interface Member {
   id: string;
   firstname: string;
@@ -130,6 +187,10 @@ export interface Member {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orientations".
+ */
 export interface Orientation {
   id: string;
   name: string;
@@ -148,6 +209,10 @@ export interface Orientation {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "logos".
+ */
 export interface Logo {
   id: string;
   alt: string;
@@ -160,6 +225,10 @@ export interface Logo {
   width?: number | null;
   height?: number | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners".
+ */
 export interface Partner {
   id: string;
   name: string;
@@ -178,6 +247,10 @@ export interface Partner {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs".
+ */
 export interface Job {
   id: string;
   role: string;
@@ -189,6 +262,10 @@ export interface Job {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "socials".
+ */
 export interface Social {
   id: string;
   name: string;
@@ -199,6 +276,10 @@ export interface Social {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
 export interface Document {
   id: string;
   alt: string;
@@ -211,6 +292,10 @@ export interface Document {
   width?: number | null;
   height?: number | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
 export interface Video {
   id: string;
   alt: string;
@@ -223,6 +308,10 @@ export interface Video {
   width?: number | null;
   height?: number | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences".
+ */
 export interface PayloadPreference {
   id: string;
   user: {
@@ -242,6 +331,10 @@ export interface PayloadPreference {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations".
+ */
 export interface PayloadMigration {
   id: string;
   name?: string | null;
@@ -249,6 +342,10 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "association".
+ */
 export interface Association {
   id: string;
   presentation: string;
@@ -263,6 +360,10 @@ export interface Association {
   updatedAt?: string | null;
   createdAt?: string | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dons".
+ */
 export interface Don {
   id: string;
   description: string;

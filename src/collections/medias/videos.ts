@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload/types";
+import { isEditor } from "../../access/isEditor";
 
 export const Videos: CollectionConfig = {
   slug: "videos",
@@ -18,6 +19,9 @@ export const Videos: CollectionConfig = {
   },
   access: {
     read: () => true,
+    update: isEditor,
+    create: isEditor,
+    delete: isEditor,
   },
   fields: [
     {

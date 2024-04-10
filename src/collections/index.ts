@@ -14,3 +14,4 @@ export { Documents } from "./medias/documents";
 export { Icons } from "./medias/icons";
 export { Videos } from "./medias/videos";
 export { Logos } from "./medias/logos";
+export { Images } from "./medias/images";
