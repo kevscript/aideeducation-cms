@@ -1,18 +1,18 @@
 import { CollectionConfig } from "payload/types";
 import { isEditor } from "../../access/isEditor";
 
-export const Avatars: CollectionConfig = {
-  slug: "avatars",
+export const Images: CollectionConfig = {
+  slug: "images",
   upload: {
-    staticDir: "media/avatars",
-    staticURL: "/media/avatars",
+    staticDir: "media/images",
+    staticURL: "/media/images",
     mimeTypes: ["image/*"],
     focalPoint: false,
     crop: false,
   },
   labels: {
-    singular: "Avatar",
-    plural: "Avatars",
+    singular: "Image",
+    plural: "Images",
   },
   admin: { group: "Medias" },
   access: {
@@ -28,7 +28,7 @@ export const Avatars: CollectionConfig = {
       label: "Description textuelle",
       required: true,
       admin: {
-        placeholder: "ex: Avatar de Pierre Dupont",
+        placeholder: "ex: un poisson rouge",
       },
     },
   ],

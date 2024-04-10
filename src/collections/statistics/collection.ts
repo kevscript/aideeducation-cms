@@ -25,21 +25,47 @@ export const Statistics: CollectionConfig = {
   },
   fields: [
     {
-      type: "text",
-      name: "title",
-      required: true,
-      label: "Valeur",
-      maxLength: 10,
-      admin: {
-        placeholder: "ex: 56, <24h, 4k+,...",
-      },
+      type: "row",
+      fields: [
+        {
+          name: "prefix",
+          type: "text",
+          required: false,
+          label: "Préfixe",
+          maxLength: 10,
+          admin: {
+            placeholder: "ex: '<' dans '<24h'",
+          },
+        },
+        {
+          type: "text",
+          name: "title",
+          required: true,
+          label: "Valeur",
+          maxLength: 10,
+          admin: {
+            placeholder: "ex: '24' dans '<24h'",
+          },
+        },
+        {
+          name: "suffix",
+          type: "text",
+          required: false,
+          label: "Suffixe",
+          maxLength: 10,
+          admin: {
+            placeholder: "ex: 'h' dans '<24h'",
+          },
+        },
+      ],
     },
+
     {
       type: "text",
       name: "description",
       required: true,
       label: "Description (complète la stat)",
-      maxLength: 50,
+      maxLength: 200,
       admin: {
         placeholder: "ex: Bénévoles pour vous accompagner.",
       },
