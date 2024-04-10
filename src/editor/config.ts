@@ -12,7 +12,7 @@ import {
   ParagraphFeature,
   StrikethroughTextFeature,
   UnderlineTextFeature,
-  UnoderedListFeature,
+  UnorderedListFeature,
 } from "@payloadcms/richtext-lexical";
 
 export const customDefaultLexicalFeatures: FeatureProvider[] = [
@@ -24,7 +24,7 @@ export const customDefaultLexicalFeatures: FeatureProvider[] = [
   HeadingFeature({}),
   AlignFeature(),
   IndentFeature(),
-  UnoderedListFeature(),
+  UnorderedListFeature(),
   OrderedListFeature(),
   LinkFeature({}),
   BlockQuoteFeature(),
