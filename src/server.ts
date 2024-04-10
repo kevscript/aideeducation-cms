@@ -1,6 +1,7 @@
 import express from "express";
 import payload from "payload";
 import dotenv from "dotenv";
+import cors from "cors";
 import path from "path";
 import passport from "passport";
 import session from "express-session";
@@ -11,6 +12,14 @@ import { GoogleOAuthStrategy } from "./auth/google-strategy";
 
 dotenv.config();
 const app = express();
+
+const prod = process.env.NODE_ENV === "production";
+const clientUrl = prod ? process.env.PAYLOAD_CLIENT_URL : `http://localhost:3000`;
+app.use(
+  cors({
+    origin: [clientUrl],
+  }),
+);
 
 // this is called to initialize the auth processs
 app.get("/oauth2/authorize", passport.authenticate("googleOauth"));
