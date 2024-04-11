@@ -20,6 +20,7 @@ export interface Config {
     jobs: Job;
     socials: Social;
     avatars: Avatar;
+    tutorials: Tutorial;
     documents: Document;
     icons: Icon;
     images: Image;
@@ -271,6 +272,40 @@ export interface Social {
   name: string;
   link: string;
   icon: string | Icon;
+  order: number;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tutorials".
+ */
+export interface Tutorial {
+  id: string;
+  title: string;
+  steps: {
+    title: string;
+    image: string | Image;
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description_html?: string | null;
+    order: number;
+    id?: string | null;
+  }[];
   order: number;
   published: boolean;
   updatedAt: string;
