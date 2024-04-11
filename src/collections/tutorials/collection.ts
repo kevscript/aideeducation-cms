@@ -21,7 +21,7 @@ import {
 export const Tutorials: CollectionConfig = {
   slug: "tutorials",
   admin: {
-    group: "Acceuil",
+    group: "Documentation",
     description: "Les tutoriels proposés par l'association.",
     useAsTitle: "title",
     defaultColumns: ["title", "order", "published", "updatedAt", "createdAt"],
