@@ -9,6 +9,7 @@ export { Faqs } from "./faqs/collection";
 export { Testimonials } from "./testimonials/collection";
 export { Orientations } from "./orientations/collection";
 export { Partners } from "./partners/collection";
+export { Tutorials } from "./tutorials/collection";
 export { Avatars } from "./medias/avatars";
 export { Documents } from "./medias/documents";
 export { Icons } from "./medias/icons";

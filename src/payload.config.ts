@@ -24,6 +24,7 @@ import {
   Logos,
   Partners,
   Images,
+  Tutorials,
 } from "./collections";
 import { Association, Dons } from "./globals";
 import GoogleLogin from "./components/GoogleLogin";
@@ -70,6 +71,7 @@ export default buildConfig({
     Jobs,
     Socials,
     Avatars,
+    Tutorials,
     Documents,
     Icons,
     Images,
